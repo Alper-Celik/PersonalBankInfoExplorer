@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
@@ -11,8 +12,13 @@ public class BankDataContext : DbContext
 {
 
   private readonly string? connectionString;
+  private readonly SqliteConnection? connection;
 
   public BankDataContext(DbContextOptions<BankDataContext> options) : base(options) { }
+  public BankDataContext(SqliteConnection _connection)
+  {
+    this.connection = _connection;
+  }
   public BankDataContext(string _connectionString)
   {
     this.connectionString = _connectionString;
@@ -25,6 +31,10 @@ public class BankDataContext : DbContext
     if (connectionString is not null)
     {
       optionsBuilder.UseSqlite(connectionString);
+    }
+    else if (connection is not null)
+    {
+      optionsBuilder.UseSqlite(connection);
     }
   }
 
