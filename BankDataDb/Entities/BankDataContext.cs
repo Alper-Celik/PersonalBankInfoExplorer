@@ -5,15 +5,15 @@ using System.Text.Json.Nodes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
-namespace DataOperator.Entities;
+namespace BankDataDb.Entities;
 
-public class DataOperatorContext : DbContext
+public class BankDataContext : DbContext
 {
 
   private readonly string? connectionString;
 
-  public DataOperatorContext(DbContextOptions<DataOperatorContext> options) : base(options) { }
-  public DataOperatorContext(string _connectionString)
+  public BankDataContext(DbContextOptions<BankDataContext> options) : base(options) { }
+  public BankDataContext(string _connectionString)
   {
     this.connectionString = _connectionString;
   }

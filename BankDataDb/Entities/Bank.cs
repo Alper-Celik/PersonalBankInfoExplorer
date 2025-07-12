@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataOperator.Entities;
+namespace BankDataDb.Entities;
 
 [Table("Banks")]
 public class Bank

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataOperator.Entities;
+namespace BankDataDb.Entities;
 
 [Index(nameof(Alpha2Code), IsUnique = true)]
 [Index(nameof(Alpha3Code), IsUnique = true)]

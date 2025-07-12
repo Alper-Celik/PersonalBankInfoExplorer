@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataOperator.Entities;
+namespace BankDataDb.Entities;
 
 [Index(nameof(CurrencyCode), IsUnique = true)]
 [Table("Currencies")]
