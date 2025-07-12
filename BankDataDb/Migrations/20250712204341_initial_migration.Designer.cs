@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankDataDb.Migrations
 {
     [DbContext(typeof(BankDataContext))]
-    [Migration("20250712141214_initial_migration")]
+    [Migration("20250712204341_initial_migration")]
     partial class initial_migration
     {
         /// <inheritdoc />
@@ -125,1352 +125,1352 @@ namespace BankDataDb.Migrations
                     b.HasData(
                         new
                         {
-                            Alpha3Code = "afg",
-                            Alpha2Code = "af",
+                            Alpha3Code = "AFG",
+                            Alpha2Code = "AF",
                             EnglishName = "Afghanistan",
                             NumericCode = (short)4
                         },
                         new
                         {
-                            Alpha3Code = "alb",
-                            Alpha2Code = "al",
+                            Alpha3Code = "ALB",
+                            Alpha2Code = "AL",
                             EnglishName = "Albania",
                             NumericCode = (short)8
                         },
                         new
                         {
-                            Alpha3Code = "dza",
-                            Alpha2Code = "dz",
+                            Alpha3Code = "DZA",
+                            Alpha2Code = "DZ",
                             EnglishName = "Algeria",
                             NumericCode = (short)12
                         },
                         new
                         {
-                            Alpha3Code = "and",
-                            Alpha2Code = "ad",
+                            Alpha3Code = "AND",
+                            Alpha2Code = "AD",
                             EnglishName = "Andorra",
                             NumericCode = (short)20
                         },
                         new
                         {
-                            Alpha3Code = "ago",
-                            Alpha2Code = "ao",
+                            Alpha3Code = "AGO",
+                            Alpha2Code = "AO",
                             EnglishName = "Angola",
                             NumericCode = (short)24
                         },
                         new
                         {
-                            Alpha3Code = "atg",
-                            Alpha2Code = "ag",
+                            Alpha3Code = "ATG",
+                            Alpha2Code = "AG",
                             EnglishName = "Antigua and Barbuda",
                             NumericCode = (short)28
                         },
                         new
                         {
-                            Alpha3Code = "arg",
-                            Alpha2Code = "ar",
+                            Alpha3Code = "ARG",
+                            Alpha2Code = "AR",
                             EnglishName = "Argentina",
                             NumericCode = (short)32
                         },
                         new
                         {
-                            Alpha3Code = "arm",
-                            Alpha2Code = "am",
+                            Alpha3Code = "ARM",
+                            Alpha2Code = "AM",
                             EnglishName = "Armenia",
                             NumericCode = (short)51
                         },
                         new
                         {
-                            Alpha3Code = "aus",
-                            Alpha2Code = "au",
+                            Alpha3Code = "AUS",
+                            Alpha2Code = "AU",
                             EnglishName = "Australia",
                             NumericCode = (short)36
                         },
                         new
                         {
-                            Alpha3Code = "aut",
-                            Alpha2Code = "at",
+                            Alpha3Code = "AUT",
+                            Alpha2Code = "AT",
                             EnglishName = "Austria",
                             NumericCode = (short)40
                         },
                         new
                         {
-                            Alpha3Code = "aze",
-                            Alpha2Code = "az",
+                            Alpha3Code = "AZE",
+                            Alpha2Code = "AZ",
                             EnglishName = "Azerbaijan",
                             NumericCode = (short)31
                         },
                         new
                         {
-                            Alpha3Code = "bhs",
-                            Alpha2Code = "bs",
+                            Alpha3Code = "BHS",
+                            Alpha2Code = "BS",
                             EnglishName = "Bahamas",
                             NumericCode = (short)44
                         },
                         new
                         {
-                            Alpha3Code = "bhr",
-                            Alpha2Code = "bh",
+                            Alpha3Code = "BHR",
+                            Alpha2Code = "BH",
                             EnglishName = "Bahrain",
                             NumericCode = (short)48
                         },
                         new
                         {
-                            Alpha3Code = "bgd",
-                            Alpha2Code = "bd",
+                            Alpha3Code = "BGD",
+                            Alpha2Code = "BD",
                             EnglishName = "Bangladesh",
                             NumericCode = (short)50
                         },
                         new
                         {
-                            Alpha3Code = "brb",
-                            Alpha2Code = "bb",
+                            Alpha3Code = "BRB",
+                            Alpha2Code = "BB",
                             EnglishName = "Barbados",
                             NumericCode = (short)52
                         },
                         new
                         {
-                            Alpha3Code = "blr",
-                            Alpha2Code = "by",
+                            Alpha3Code = "BLR",
+                            Alpha2Code = "BY",
                             EnglishName = "Belarus",
                             NumericCode = (short)112
                         },
                         new
                         {
-                            Alpha3Code = "bel",
-                            Alpha2Code = "be",
+                            Alpha3Code = "BEL",
+                            Alpha2Code = "BE",
                             EnglishName = "Belgium",
                             NumericCode = (short)56
                         },
                         new
                         {
-                            Alpha3Code = "blz",
-                            Alpha2Code = "bz",
+                            Alpha3Code = "BLZ",
+                            Alpha2Code = "BZ",
                             EnglishName = "Belize",
                             NumericCode = (short)84
                         },
                         new
                         {
-                            Alpha3Code = "ben",
-                            Alpha2Code = "bj",
+                            Alpha3Code = "BEN",
+                            Alpha2Code = "BJ",
                             EnglishName = "Benin",
                             NumericCode = (short)204
                         },
                         new
                         {
-                            Alpha3Code = "btn",
-                            Alpha2Code = "bt",
+                            Alpha3Code = "BTN",
+                            Alpha2Code = "BT",
                             EnglishName = "Bhutan",
                             NumericCode = (short)64
                         },
                         new
                         {
-                            Alpha3Code = "bol",
-                            Alpha2Code = "bo",
+                            Alpha3Code = "BOL",
+                            Alpha2Code = "BO",
                             EnglishName = "Bolivia, Plurinational State of",
                             NumericCode = (short)68
                         },
                         new
                         {
-                            Alpha3Code = "bih",
-                            Alpha2Code = "ba",
+                            Alpha3Code = "BIH",
+                            Alpha2Code = "BA",
                             EnglishName = "Bosnia and Herzegovina",
                             NumericCode = (short)70
                         },
                         new
                         {
-                            Alpha3Code = "bwa",
-                            Alpha2Code = "bw",
+                            Alpha3Code = "BWA",
+                            Alpha2Code = "BW",
                             EnglishName = "Botswana",
                             NumericCode = (short)72
                         },
                         new
                         {
-                            Alpha3Code = "bra",
-                            Alpha2Code = "br",
+                            Alpha3Code = "BRA",
+                            Alpha2Code = "BR",
                             EnglishName = "Brazil",
                             NumericCode = (short)76
                         },
                         new
                         {
-                            Alpha3Code = "brn",
-                            Alpha2Code = "bn",
+                            Alpha3Code = "BRN",
+                            Alpha2Code = "BN",
                             EnglishName = "Brunei Darussalam",
                             NumericCode = (short)96
                         },
                         new
                         {
-                            Alpha3Code = "bgr",
-                            Alpha2Code = "bg",
+                            Alpha3Code = "BGR",
+                            Alpha2Code = "BG",
                             EnglishName = "Bulgaria",
                             NumericCode = (short)100
                         },
                         new
                         {
-                            Alpha3Code = "bfa",
-                            Alpha2Code = "bf",
+                            Alpha3Code = "BFA",
+                            Alpha2Code = "BF",
                             EnglishName = "Burkina Faso",
                             NumericCode = (short)854
                         },
                         new
                         {
-                            Alpha3Code = "bdi",
-                            Alpha2Code = "bi",
+                            Alpha3Code = "BDI",
+                            Alpha2Code = "BI",
                             EnglishName = "Burundi",
                             NumericCode = (short)108
                         },
                         new
                         {
-                            Alpha3Code = "cpv",
-                            Alpha2Code = "cv",
+                            Alpha3Code = "CPV",
+                            Alpha2Code = "CV",
                             EnglishName = "Cabo Verde",
                             NumericCode = (short)132
                         },
                         new
                         {
-                            Alpha3Code = "khm",
-                            Alpha2Code = "kh",
+                            Alpha3Code = "KHM",
+                            Alpha2Code = "KH",
                             EnglishName = "Cambodia",
                             NumericCode = (short)116
                         },
                         new
                         {
-                            Alpha3Code = "cmr",
-                            Alpha2Code = "cm",
+                            Alpha3Code = "CMR",
+                            Alpha2Code = "CM",
                             EnglishName = "Cameroon",
                             NumericCode = (short)120
                         },
                         new
                         {
-                            Alpha3Code = "can",
-                            Alpha2Code = "ca",
+                            Alpha3Code = "CAN",
+                            Alpha2Code = "CA",
                             EnglishName = "Canada",
                             NumericCode = (short)124
                         },
                         new
                         {
-                            Alpha3Code = "caf",
-                            Alpha2Code = "cf",
+                            Alpha3Code = "CAF",
+                            Alpha2Code = "CF",
                             EnglishName = "Central African Republic",
                             NumericCode = (short)140
                         },
                         new
                         {
-                            Alpha3Code = "tcd",
-                            Alpha2Code = "td",
+                            Alpha3Code = "TCD",
+                            Alpha2Code = "TD",
                             EnglishName = "Chad",
                             NumericCode = (short)148
                         },
                         new
                         {
-                            Alpha3Code = "chl",
-                            Alpha2Code = "cl",
+                            Alpha3Code = "CHL",
+                            Alpha2Code = "CL",
                             EnglishName = "Chile",
                             NumericCode = (short)152
                         },
                         new
                         {
-                            Alpha3Code = "chn",
-                            Alpha2Code = "cn",
+                            Alpha3Code = "CHN",
+                            Alpha2Code = "CN",
                             EnglishName = "China",
                             NumericCode = (short)156
                         },
                         new
                         {
-                            Alpha3Code = "col",
-                            Alpha2Code = "co",
+                            Alpha3Code = "COL",
+                            Alpha2Code = "CO",
                             EnglishName = "Colombia",
                             NumericCode = (short)170
                         },
                         new
                         {
-                            Alpha3Code = "com",
-                            Alpha2Code = "km",
+                            Alpha3Code = "COM",
+                            Alpha2Code = "KM",
                             EnglishName = "Comoros",
                             NumericCode = (short)174
                         },
                         new
                         {
-                            Alpha3Code = "cog",
-                            Alpha2Code = "cg",
+                            Alpha3Code = "COG",
+                            Alpha2Code = "CG",
                             EnglishName = "Congo",
                             NumericCode = (short)178
                         },
                         new
                         {
-                            Alpha3Code = "cod",
-                            Alpha2Code = "cd",
+                            Alpha3Code = "COD",
+                            Alpha2Code = "CD",
                             EnglishName = "Congo, Democratic Republic of the",
                             NumericCode = (short)180
                         },
                         new
                         {
-                            Alpha3Code = "cri",
-                            Alpha2Code = "cr",
+                            Alpha3Code = "CRI",
+                            Alpha2Code = "CR",
                             EnglishName = "Costa Rica",
                             NumericCode = (short)188
                         },
                         new
                         {
-                            Alpha3Code = "civ",
-                            Alpha2Code = "ci",
+                            Alpha3Code = "CIV",
+                            Alpha2Code = "CI",
                             EnglishName = "Côte d'Ivoire",
                             NumericCode = (short)384
                         },
                         new
                         {
-                            Alpha3Code = "hrv",
-                            Alpha2Code = "hr",
+                            Alpha3Code = "HRV",
+                            Alpha2Code = "HR",
                             EnglishName = "Croatia",
                             NumericCode = (short)191
                         },
                         new
                         {
-                            Alpha3Code = "cub",
-                            Alpha2Code = "cu",
+                            Alpha3Code = "CUB",
+                            Alpha2Code = "CU",
                             EnglishName = "Cuba",
                             NumericCode = (short)192
                         },
                         new
                         {
-                            Alpha3Code = "cyp",
-                            Alpha2Code = "cy",
+                            Alpha3Code = "CYP",
+                            Alpha2Code = "CY",
                             EnglishName = "Cyprus",
                             NumericCode = (short)196
                         },
                         new
                         {
-                            Alpha3Code = "cze",
-                            Alpha2Code = "cz",
+                            Alpha3Code = "CZE",
+                            Alpha2Code = "CZ",
                             EnglishName = "Czechia",
                             NumericCode = (short)203
                         },
                         new
                         {
-                            Alpha3Code = "dnk",
-                            Alpha2Code = "dk",
+                            Alpha3Code = "DNK",
+                            Alpha2Code = "DK",
                             EnglishName = "Denmark",
                             NumericCode = (short)208
                         },
                         new
                         {
-                            Alpha3Code = "dji",
-                            Alpha2Code = "dj",
+                            Alpha3Code = "DJI",
+                            Alpha2Code = "DJ",
                             EnglishName = "Djibouti",
                             NumericCode = (short)262
                         },
                         new
                         {
-                            Alpha3Code = "dma",
-                            Alpha2Code = "dm",
+                            Alpha3Code = "DMA",
+                            Alpha2Code = "DM",
                             EnglishName = "Dominica",
                             NumericCode = (short)212
                         },
                         new
                         {
-                            Alpha3Code = "dom",
-                            Alpha2Code = "do",
+                            Alpha3Code = "DOM",
+                            Alpha2Code = "DO",
                             EnglishName = "Dominican Republic",
                             NumericCode = (short)214
                         },
                         new
                         {
-                            Alpha3Code = "ecu",
-                            Alpha2Code = "ec",
+                            Alpha3Code = "ECU",
+                            Alpha2Code = "EC",
                             EnglishName = "Ecuador",
                             NumericCode = (short)218
                         },
                         new
                         {
-                            Alpha3Code = "egy",
-                            Alpha2Code = "eg",
+                            Alpha3Code = "EGY",
+                            Alpha2Code = "EG",
                             EnglishName = "Egypt",
                             NumericCode = (short)818
                         },
                         new
                         {
-                            Alpha3Code = "slv",
-                            Alpha2Code = "sv",
+                            Alpha3Code = "SLV",
+                            Alpha2Code = "SV",
                             EnglishName = "El Salvador",
                             NumericCode = (short)222
                         },
                         new
                         {
-                            Alpha3Code = "gnq",
-                            Alpha2Code = "gq",
+                            Alpha3Code = "GNQ",
+                            Alpha2Code = "GQ",
                             EnglishName = "Equatorial Guinea",
                             NumericCode = (short)226
                         },
                         new
                         {
-                            Alpha3Code = "eri",
-                            Alpha2Code = "er",
+                            Alpha3Code = "ERI",
+                            Alpha2Code = "ER",
                             EnglishName = "Eritrea",
                             NumericCode = (short)232
                         },
                         new
                         {
-                            Alpha3Code = "est",
-                            Alpha2Code = "ee",
+                            Alpha3Code = "EST",
+                            Alpha2Code = "EE",
                             EnglishName = "Estonia",
                             NumericCode = (short)233
                         },
                         new
                         {
-                            Alpha3Code = "swz",
-                            Alpha2Code = "sz",
+                            Alpha3Code = "SWZ",
+                            Alpha2Code = "SZ",
                             EnglishName = "Eswatini",
                             NumericCode = (short)748
                         },
                         new
                         {
-                            Alpha3Code = "eth",
-                            Alpha2Code = "et",
+                            Alpha3Code = "ETH",
+                            Alpha2Code = "ET",
                             EnglishName = "Ethiopia",
                             NumericCode = (short)231
                         },
                         new
                         {
-                            Alpha3Code = "fji",
-                            Alpha2Code = "fj",
+                            Alpha3Code = "FJI",
+                            Alpha2Code = "FJ",
                             EnglishName = "Fiji",
                             NumericCode = (short)242
                         },
                         new
                         {
-                            Alpha3Code = "fin",
-                            Alpha2Code = "fi",
+                            Alpha3Code = "FIN",
+                            Alpha2Code = "FI",
                             EnglishName = "Finland",
                             NumericCode = (short)246
                         },
                         new
                         {
-                            Alpha3Code = "fra",
-                            Alpha2Code = "fr",
+                            Alpha3Code = "FRA",
+                            Alpha2Code = "FR",
                             EnglishName = "France",
                             NumericCode = (short)250
                         },
                         new
                         {
-                            Alpha3Code = "gab",
-                            Alpha2Code = "ga",
+                            Alpha3Code = "GAB",
+                            Alpha2Code = "GA",
                             EnglishName = "Gabon",
                             NumericCode = (short)266
                         },
                         new
                         {
-                            Alpha3Code = "gmb",
-                            Alpha2Code = "gm",
+                            Alpha3Code = "GMB",
+                            Alpha2Code = "GM",
                             EnglishName = "Gambia",
                             NumericCode = (short)270
                         },
                         new
                         {
-                            Alpha3Code = "geo",
-                            Alpha2Code = "ge",
+                            Alpha3Code = "GEO",
+                            Alpha2Code = "GE",
                             EnglishName = "Georgia",
                             NumericCode = (short)268
                         },
                         new
                         {
-                            Alpha3Code = "deu",
-                            Alpha2Code = "de",
+                            Alpha3Code = "DEU",
+                            Alpha2Code = "DE",
                             EnglishName = "Germany",
                             NumericCode = (short)276
                         },
                         new
                         {
-                            Alpha3Code = "gha",
-                            Alpha2Code = "gh",
+                            Alpha3Code = "GHA",
+                            Alpha2Code = "GH",
                             EnglishName = "Ghana",
                             NumericCode = (short)288
                         },
                         new
                         {
-                            Alpha3Code = "grc",
-                            Alpha2Code = "gr",
+                            Alpha3Code = "GRC",
+                            Alpha2Code = "GR",
                             EnglishName = "Greece",
                             NumericCode = (short)300
                         },
                         new
                         {
-                            Alpha3Code = "grd",
-                            Alpha2Code = "gd",
+                            Alpha3Code = "GRD",
+                            Alpha2Code = "GD",
                             EnglishName = "Grenada",
                             NumericCode = (short)308
                         },
                         new
                         {
-                            Alpha3Code = "gtm",
-                            Alpha2Code = "gt",
+                            Alpha3Code = "GTM",
+                            Alpha2Code = "GT",
                             EnglishName = "Guatemala",
                             NumericCode = (short)320
                         },
                         new
                         {
-                            Alpha3Code = "gin",
-                            Alpha2Code = "gn",
+                            Alpha3Code = "GIN",
+                            Alpha2Code = "GN",
                             EnglishName = "Guinea",
                             NumericCode = (short)324
                         },
                         new
                         {
-                            Alpha3Code = "gnb",
-                            Alpha2Code = "gw",
+                            Alpha3Code = "GNB",
+                            Alpha2Code = "GW",
                             EnglishName = "Guinea-Bissau",
                             NumericCode = (short)624
                         },
                         new
                         {
-                            Alpha3Code = "guy",
-                            Alpha2Code = "gy",
+                            Alpha3Code = "GUY",
+                            Alpha2Code = "GY",
                             EnglishName = "Guyana",
                             NumericCode = (short)328
                         },
                         new
                         {
-                            Alpha3Code = "hti",
-                            Alpha2Code = "ht",
+                            Alpha3Code = "HTI",
+                            Alpha2Code = "HT",
                             EnglishName = "Haiti",
                             NumericCode = (short)332
                         },
                         new
                         {
-                            Alpha3Code = "hnd",
-                            Alpha2Code = "hn",
+                            Alpha3Code = "HND",
+                            Alpha2Code = "HN",
                             EnglishName = "Honduras",
                             NumericCode = (short)340
                         },
                         new
                         {
-                            Alpha3Code = "hun",
-                            Alpha2Code = "hu",
+                            Alpha3Code = "HUN",
+                            Alpha2Code = "HU",
                             EnglishName = "Hungary",
                             NumericCode = (short)348
                         },
                         new
                         {
-                            Alpha3Code = "isl",
-                            Alpha2Code = "is",
+                            Alpha3Code = "ISL",
+                            Alpha2Code = "IS",
                             EnglishName = "Iceland",
                             NumericCode = (short)352
                         },
                         new
                         {
-                            Alpha3Code = "ind",
-                            Alpha2Code = "in",
+                            Alpha3Code = "IND",
+                            Alpha2Code = "IN",
                             EnglishName = "India",
                             NumericCode = (short)356
                         },
                         new
                         {
-                            Alpha3Code = "idn",
-                            Alpha2Code = "id",
+                            Alpha3Code = "IDN",
+                            Alpha2Code = "ID",
                             EnglishName = "Indonesia",
                             NumericCode = (short)360
                         },
                         new
                         {
-                            Alpha3Code = "irn",
-                            Alpha2Code = "ir",
+                            Alpha3Code = "IRN",
+                            Alpha2Code = "IR",
                             EnglishName = "Iran, Islamic Republic of",
                             NumericCode = (short)364
                         },
                         new
                         {
-                            Alpha3Code = "irq",
-                            Alpha2Code = "iq",
+                            Alpha3Code = "IRQ",
+                            Alpha2Code = "IQ",
                             EnglishName = "Iraq",
                             NumericCode = (short)368
                         },
                         new
                         {
-                            Alpha3Code = "irl",
-                            Alpha2Code = "ie",
+                            Alpha3Code = "IRL",
+                            Alpha2Code = "IE",
                             EnglishName = "Ireland",
                             NumericCode = (short)372
                         },
                         new
                         {
-                            Alpha3Code = "isr",
-                            Alpha2Code = "il",
+                            Alpha3Code = "ISR",
+                            Alpha2Code = "IL",
                             EnglishName = "Israel",
                             NumericCode = (short)376
                         },
                         new
                         {
-                            Alpha3Code = "ita",
-                            Alpha2Code = "it",
+                            Alpha3Code = "ITA",
+                            Alpha2Code = "IT",
                             EnglishName = "Italy",
                             NumericCode = (short)380
                         },
                         new
                         {
-                            Alpha3Code = "jam",
-                            Alpha2Code = "jm",
+                            Alpha3Code = "JAM",
+                            Alpha2Code = "JM",
                             EnglishName = "Jamaica",
                             NumericCode = (short)388
                         },
                         new
                         {
-                            Alpha3Code = "jpn",
-                            Alpha2Code = "jp",
+                            Alpha3Code = "JPN",
+                            Alpha2Code = "JP",
                             EnglishName = "Japan",
                             NumericCode = (short)392
                         },
                         new
                         {
-                            Alpha3Code = "jor",
-                            Alpha2Code = "jo",
+                            Alpha3Code = "JOR",
+                            Alpha2Code = "JO",
                             EnglishName = "Jordan",
                             NumericCode = (short)400
                         },
                         new
                         {
-                            Alpha3Code = "kaz",
-                            Alpha2Code = "kz",
+                            Alpha3Code = "KAZ",
+                            Alpha2Code = "KZ",
                             EnglishName = "Kazakhstan",
                             NumericCode = (short)398
                         },
                         new
                         {
-                            Alpha3Code = "ken",
-                            Alpha2Code = "ke",
+                            Alpha3Code = "KEN",
+                            Alpha2Code = "KE",
                             EnglishName = "Kenya",
                             NumericCode = (short)404
                         },
                         new
                         {
-                            Alpha3Code = "kir",
-                            Alpha2Code = "ki",
+                            Alpha3Code = "KIR",
+                            Alpha2Code = "KI",
                             EnglishName = "Kiribati",
                             NumericCode = (short)296
                         },
                         new
                         {
-                            Alpha3Code = "prk",
-                            Alpha2Code = "kp",
+                            Alpha3Code = "PRK",
+                            Alpha2Code = "KP",
                             EnglishName = "Korea, Democratic People's Republic of",
                             NumericCode = (short)408
                         },
                         new
                         {
-                            Alpha3Code = "kor",
-                            Alpha2Code = "kr",
+                            Alpha3Code = "KOR",
+                            Alpha2Code = "KR",
                             EnglishName = "Korea, Republic of",
                             NumericCode = (short)410
                         },
                         new
                         {
-                            Alpha3Code = "kwt",
-                            Alpha2Code = "kw",
+                            Alpha3Code = "KWT",
+                            Alpha2Code = "KW",
                             EnglishName = "Kuwait",
                             NumericCode = (short)414
                         },
                         new
                         {
-                            Alpha3Code = "kgz",
-                            Alpha2Code = "kg",
+                            Alpha3Code = "KGZ",
+                            Alpha2Code = "KG",
                             EnglishName = "Kyrgyzstan",
                             NumericCode = (short)417
                         },
                         new
                         {
-                            Alpha3Code = "lao",
-                            Alpha2Code = "la",
+                            Alpha3Code = "LAO",
+                            Alpha2Code = "LA",
                             EnglishName = "Lao People's Democratic Republic",
                             NumericCode = (short)418
                         },
                         new
                         {
-                            Alpha3Code = "lva",
-                            Alpha2Code = "lv",
+                            Alpha3Code = "LVA",
+                            Alpha2Code = "LV",
                             EnglishName = "Latvia",
                             NumericCode = (short)428
                         },
                         new
                         {
-                            Alpha3Code = "lbn",
-                            Alpha2Code = "lb",
+                            Alpha3Code = "LBN",
+                            Alpha2Code = "LB",
                             EnglishName = "Lebanon",
                             NumericCode = (short)422
                         },
                         new
                         {
-                            Alpha3Code = "lso",
-                            Alpha2Code = "ls",
+                            Alpha3Code = "LSO",
+                            Alpha2Code = "LS",
                             EnglishName = "Lesotho",
                             NumericCode = (short)426
                         },
                         new
                         {
-                            Alpha3Code = "lbr",
-                            Alpha2Code = "lr",
+                            Alpha3Code = "LBR",
+                            Alpha2Code = "LR",
                             EnglishName = "Liberia",
                             NumericCode = (short)430
                         },
                         new
                         {
-                            Alpha3Code = "lby",
-                            Alpha2Code = "ly",
+                            Alpha3Code = "LBY",
+                            Alpha2Code = "LY",
                             EnglishName = "Libya",
                             NumericCode = (short)434
                         },
                         new
                         {
-                            Alpha3Code = "lie",
-                            Alpha2Code = "li",
+                            Alpha3Code = "LIE",
+                            Alpha2Code = "LI",
                             EnglishName = "Liechtenstein",
                             NumericCode = (short)438
                         },
                         new
                         {
-                            Alpha3Code = "ltu",
-                            Alpha2Code = "lt",
+                            Alpha3Code = "LTU",
+                            Alpha2Code = "LT",
                             EnglishName = "Lithuania",
                             NumericCode = (short)440
                         },
                         new
                         {
-                            Alpha3Code = "lux",
-                            Alpha2Code = "lu",
+                            Alpha3Code = "LUX",
+                            Alpha2Code = "LU",
                             EnglishName = "Luxembourg",
                             NumericCode = (short)442
                         },
                         new
                         {
-                            Alpha3Code = "mdg",
-                            Alpha2Code = "mg",
+                            Alpha3Code = "MDG",
+                            Alpha2Code = "MG",
                             EnglishName = "Madagascar",
                             NumericCode = (short)450
                         },
                         new
                         {
-                            Alpha3Code = "mwi",
-                            Alpha2Code = "mw",
+                            Alpha3Code = "MWI",
+                            Alpha2Code = "MW",
                             EnglishName = "Malawi",
                             NumericCode = (short)454
                         },
                         new
                         {
-                            Alpha3Code = "mys",
-                            Alpha2Code = "my",
+                            Alpha3Code = "MYS",
+                            Alpha2Code = "MY",
                             EnglishName = "Malaysia",
                             NumericCode = (short)458
                         },
                         new
                         {
-                            Alpha3Code = "mdv",
-                            Alpha2Code = "mv",
+                            Alpha3Code = "MDV",
+                            Alpha2Code = "MV",
                             EnglishName = "Maldives",
                             NumericCode = (short)462
                         },
                         new
                         {
-                            Alpha3Code = "mli",
-                            Alpha2Code = "ml",
+                            Alpha3Code = "MLI",
+                            Alpha2Code = "ML",
                             EnglishName = "Mali",
                             NumericCode = (short)466
                         },
                         new
                         {
-                            Alpha3Code = "mlt",
-                            Alpha2Code = "mt",
+                            Alpha3Code = "MLT",
+                            Alpha2Code = "MT",
                             EnglishName = "Malta",
                             NumericCode = (short)470
                         },
                         new
                         {
-                            Alpha3Code = "mhl",
-                            Alpha2Code = "mh",
+                            Alpha3Code = "MHL",
+                            Alpha2Code = "MH",
                             EnglishName = "Marshall Islands",
                             NumericCode = (short)584
                         },
                         new
                         {
-                            Alpha3Code = "mrt",
-                            Alpha2Code = "mr",
+                            Alpha3Code = "MRT",
+                            Alpha2Code = "MR",
                             EnglishName = "Mauritania",
                             NumericCode = (short)478
                         },
                         new
                         {
-                            Alpha3Code = "mus",
-                            Alpha2Code = "mu",
+                            Alpha3Code = "MUS",
+                            Alpha2Code = "MU",
                             EnglishName = "Mauritius",
                             NumericCode = (short)480
                         },
                         new
                         {
-                            Alpha3Code = "mex",
-                            Alpha2Code = "mx",
+                            Alpha3Code = "MEX",
+                            Alpha2Code = "MX",
                             EnglishName = "Mexico",
                             NumericCode = (short)484
                         },
                         new
                         {
-                            Alpha3Code = "fsm",
-                            Alpha2Code = "fm",
+                            Alpha3Code = "FSM",
+                            Alpha2Code = "FM",
                             EnglishName = "Micronesia, Federated States of",
                             NumericCode = (short)583
                         },
                         new
                         {
-                            Alpha3Code = "mda",
-                            Alpha2Code = "md",
+                            Alpha3Code = "MDA",
+                            Alpha2Code = "MD",
                             EnglishName = "Moldova, Republic of",
                             NumericCode = (short)498
                         },
                         new
                         {
-                            Alpha3Code = "mco",
-                            Alpha2Code = "mc",
+                            Alpha3Code = "MCO",
+                            Alpha2Code = "MC",
                             EnglishName = "Monaco",
                             NumericCode = (short)492
                         },
                         new
                         {
-                            Alpha3Code = "mng",
-                            Alpha2Code = "mn",
+                            Alpha3Code = "MNG",
+                            Alpha2Code = "MN",
                             EnglishName = "Mongolia",
                             NumericCode = (short)496
                         },
                         new
                         {
-                            Alpha3Code = "mne",
-                            Alpha2Code = "me",
+                            Alpha3Code = "MNE",
+                            Alpha2Code = "ME",
                             EnglishName = "Montenegro",
                             NumericCode = (short)499
                         },
                         new
                         {
-                            Alpha3Code = "mar",
-                            Alpha2Code = "ma",
+                            Alpha3Code = "MAR",
+                            Alpha2Code = "MA",
                             EnglishName = "Morocco",
                             NumericCode = (short)504
                         },
                         new
                         {
-                            Alpha3Code = "moz",
-                            Alpha2Code = "mz",
+                            Alpha3Code = "MOZ",
+                            Alpha2Code = "MZ",
                             EnglishName = "Mozambique",
                             NumericCode = (short)508
                         },
                         new
                         {
-                            Alpha3Code = "mmr",
-                            Alpha2Code = "mm",
+                            Alpha3Code = "MMR",
+                            Alpha2Code = "MM",
                             EnglishName = "Myanmar",
                             NumericCode = (short)104
                         },
                         new
                         {
-                            Alpha3Code = "nam",
-                            Alpha2Code = "na",
+                            Alpha3Code = "NAM",
+                            Alpha2Code = "NA",
                             EnglishName = "Namibia",
                             NumericCode = (short)516
                         },
                         new
                         {
-                            Alpha3Code = "nru",
-                            Alpha2Code = "nr",
+                            Alpha3Code = "NRU",
+                            Alpha2Code = "NR",
                             EnglishName = "Nauru",
                             NumericCode = (short)520
                         },
                         new
                         {
-                            Alpha3Code = "npl",
-                            Alpha2Code = "np",
+                            Alpha3Code = "NPL",
+                            Alpha2Code = "NP",
                             EnglishName = "Nepal",
                             NumericCode = (short)524
                         },
                         new
                         {
-                            Alpha3Code = "nld",
-                            Alpha2Code = "nl",
+                            Alpha3Code = "NLD",
+                            Alpha2Code = "NL",
                             EnglishName = "Netherlands",
                             NumericCode = (short)528
                         },
                         new
                         {
-                            Alpha3Code = "nzl",
-                            Alpha2Code = "nz",
+                            Alpha3Code = "NZL",
+                            Alpha2Code = "NZ",
                             EnglishName = "New Zealand",
                             NumericCode = (short)554
                         },
                         new
                         {
-                            Alpha3Code = "nic",
-                            Alpha2Code = "ni",
+                            Alpha3Code = "NIC",
+                            Alpha2Code = "NI",
                             EnglishName = "Nicaragua",
                             NumericCode = (short)558
                         },
                         new
                         {
-                            Alpha3Code = "ner",
-                            Alpha2Code = "ne",
+                            Alpha3Code = "NER",
+                            Alpha2Code = "NE",
                             EnglishName = "Niger",
                             NumericCode = (short)562
                         },
                         new
                         {
-                            Alpha3Code = "nga",
-                            Alpha2Code = "ng",
+                            Alpha3Code = "NGA",
+                            Alpha2Code = "NG",
                             EnglishName = "Nigeria",
                             NumericCode = (short)566
                         },
                         new
                         {
-                            Alpha3Code = "mkd",
-                            Alpha2Code = "mk",
+                            Alpha3Code = "MKD",
+                            Alpha2Code = "MK",
                             EnglishName = "North Macedonia",
                             NumericCode = (short)807
                         },
                         new
                         {
-                            Alpha3Code = "nor",
-                            Alpha2Code = "no",
+                            Alpha3Code = "NOR",
+                            Alpha2Code = "NO",
                             EnglishName = "Norway",
                             NumericCode = (short)578
                         },
                         new
                         {
-                            Alpha3Code = "omn",
-                            Alpha2Code = "om",
+                            Alpha3Code = "OMN",
+                            Alpha2Code = "OM",
                             EnglishName = "Oman",
                             NumericCode = (short)512
                         },
                         new
                         {
-                            Alpha3Code = "pak",
-                            Alpha2Code = "pk",
+                            Alpha3Code = "PAK",
+                            Alpha2Code = "PK",
                             EnglishName = "Pakistan",
                             NumericCode = (short)586
                         },
                         new
                         {
-                            Alpha3Code = "plw",
-                            Alpha2Code = "pw",
+                            Alpha3Code = "PLW",
+                            Alpha2Code = "PW",
                             EnglishName = "Palau",
                             NumericCode = (short)585
                         },
                         new
                         {
-                            Alpha3Code = "pan",
-                            Alpha2Code = "pa",
+                            Alpha3Code = "PAN",
+                            Alpha2Code = "PA",
                             EnglishName = "Panama",
                             NumericCode = (short)591
                         },
                         new
                         {
-                            Alpha3Code = "png",
-                            Alpha2Code = "pg",
+                            Alpha3Code = "PNG",
+                            Alpha2Code = "PG",
                             EnglishName = "Papua New Guinea",
                             NumericCode = (short)598
                         },
                         new
                         {
-                            Alpha3Code = "pry",
-                            Alpha2Code = "py",
+                            Alpha3Code = "PRY",
+                            Alpha2Code = "PY",
                             EnglishName = "Paraguay",
                             NumericCode = (short)600
                         },
                         new
                         {
-                            Alpha3Code = "per",
-                            Alpha2Code = "pe",
+                            Alpha3Code = "PER",
+                            Alpha2Code = "PE",
                             EnglishName = "Peru",
                             NumericCode = (short)604
                         },
                         new
                         {
-                            Alpha3Code = "phl",
-                            Alpha2Code = "ph",
+                            Alpha3Code = "PHL",
+                            Alpha2Code = "PH",
                             EnglishName = "Philippines",
                             NumericCode = (short)608
                         },
                         new
                         {
-                            Alpha3Code = "pol",
-                            Alpha2Code = "pl",
+                            Alpha3Code = "POL",
+                            Alpha2Code = "PL",
                             EnglishName = "Poland",
                             NumericCode = (short)616
                         },
                         new
                         {
-                            Alpha3Code = "prt",
-                            Alpha2Code = "pt",
+                            Alpha3Code = "PRT",
+                            Alpha2Code = "PT",
                             EnglishName = "Portugal",
                             NumericCode = (short)620
                         },
                         new
                         {
-                            Alpha3Code = "qat",
-                            Alpha2Code = "qa",
+                            Alpha3Code = "QAT",
+                            Alpha2Code = "QA",
                             EnglishName = "Qatar",
                             NumericCode = (short)634
                         },
                         new
                         {
-                            Alpha3Code = "rou",
-                            Alpha2Code = "ro",
+                            Alpha3Code = "ROU",
+                            Alpha2Code = "RO",
                             EnglishName = "Romania",
                             NumericCode = (short)642
                         },
                         new
                         {
-                            Alpha3Code = "rus",
-                            Alpha2Code = "ru",
+                            Alpha3Code = "RUS",
+                            Alpha2Code = "RU",
                             EnglishName = "Russian Federation",
                             NumericCode = (short)643
                         },
                         new
                         {
-                            Alpha3Code = "rwa",
-                            Alpha2Code = "rw",
+                            Alpha3Code = "RWA",
+                            Alpha2Code = "RW",
                             EnglishName = "Rwanda",
                             NumericCode = (short)646
                         },
                         new
                         {
-                            Alpha3Code = "kna",
-                            Alpha2Code = "kn",
+                            Alpha3Code = "KNA",
+                            Alpha2Code = "KN",
                             EnglishName = "Saint Kitts and Nevis",
                             NumericCode = (short)659
                         },
                         new
                         {
-                            Alpha3Code = "lca",
-                            Alpha2Code = "lc",
+                            Alpha3Code = "LCA",
+                            Alpha2Code = "LC",
                             EnglishName = "Saint Lucia",
                             NumericCode = (short)662
                         },
                         new
                         {
-                            Alpha3Code = "vct",
-                            Alpha2Code = "vc",
+                            Alpha3Code = "VCT",
+                            Alpha2Code = "VC",
                             EnglishName = "Saint Vincent and the Grenadines",
                             NumericCode = (short)670
                         },
                         new
                         {
-                            Alpha3Code = "wsm",
-                            Alpha2Code = "ws",
+                            Alpha3Code = "WSM",
+                            Alpha2Code = "WS",
                             EnglishName = "Samoa",
                             NumericCode = (short)882
                         },
                         new
                         {
-                            Alpha3Code = "smr",
-                            Alpha2Code = "sm",
+                            Alpha3Code = "SMR",
+                            Alpha2Code = "SM",
                             EnglishName = "San Marino",
                             NumericCode = (short)674
                         },
                         new
                         {
-                            Alpha3Code = "stp",
-                            Alpha2Code = "st",
+                            Alpha3Code = "STP",
+                            Alpha2Code = "ST",
                             EnglishName = "Sao Tome and Principe",
                             NumericCode = (short)678
                         },
                         new
                         {
-                            Alpha3Code = "sau",
-                            Alpha2Code = "sa",
+                            Alpha3Code = "SAU",
+                            Alpha2Code = "SA",
                             EnglishName = "Saudi Arabia",
                             NumericCode = (short)682
                         },
                         new
                         {
-                            Alpha3Code = "sen",
-                            Alpha2Code = "sn",
+                            Alpha3Code = "SEN",
+                            Alpha2Code = "SN",
                             EnglishName = "Senegal",
                             NumericCode = (short)686
                         },
                         new
                         {
-                            Alpha3Code = "srb",
-                            Alpha2Code = "rs",
+                            Alpha3Code = "SRB",
+                            Alpha2Code = "RS",
                             EnglishName = "Serbia",
                             NumericCode = (short)688
                         },
                         new
                         {
-                            Alpha3Code = "syc",
-                            Alpha2Code = "sc",
+                            Alpha3Code = "SYC",
+                            Alpha2Code = "SC",
                             EnglishName = "Seychelles",
                             NumericCode = (short)690
                         },
                         new
                         {
-                            Alpha3Code = "sle",
-                            Alpha2Code = "sl",
+                            Alpha3Code = "SLE",
+                            Alpha2Code = "SL",
                             EnglishName = "Sierra Leone",
                             NumericCode = (short)694
                         },
                         new
                         {
-                            Alpha3Code = "sgp",
-                            Alpha2Code = "sg",
+                            Alpha3Code = "SGP",
+                            Alpha2Code = "SG",
                             EnglishName = "Singapore",
                             NumericCode = (short)702
                         },
                         new
                         {
-                            Alpha3Code = "svk",
-                            Alpha2Code = "sk",
+                            Alpha3Code = "SVK",
+                            Alpha2Code = "SK",
                             EnglishName = "Slovakia",
                             NumericCode = (short)703
                         },
                         new
                         {
-                            Alpha3Code = "svn",
-                            Alpha2Code = "si",
+                            Alpha3Code = "SVN",
+                            Alpha2Code = "SI",
                             EnglishName = "Slovenia",
                             NumericCode = (short)705
                         },
                         new
                         {
-                            Alpha3Code = "slb",
-                            Alpha2Code = "sb",
+                            Alpha3Code = "SLB",
+                            Alpha2Code = "SB",
                             EnglishName = "Solomon Islands",
                             NumericCode = (short)90
                         },
                         new
                         {
-                            Alpha3Code = "som",
-                            Alpha2Code = "so",
+                            Alpha3Code = "SOM",
+                            Alpha2Code = "SO",
                             EnglishName = "Somalia",
                             NumericCode = (short)706
                         },
                         new
                         {
-                            Alpha3Code = "zaf",
-                            Alpha2Code = "za",
+                            Alpha3Code = "ZAF",
+                            Alpha2Code = "ZA",
                             EnglishName = "South Africa",
                             NumericCode = (short)710
                         },
                         new
                         {
-                            Alpha3Code = "ssd",
-                            Alpha2Code = "ss",
+                            Alpha3Code = "SSD",
+                            Alpha2Code = "SS",
                             EnglishName = "South Sudan",
                             NumericCode = (short)728
                         },
                         new
                         {
-                            Alpha3Code = "esp",
-                            Alpha2Code = "es",
+                            Alpha3Code = "ESP",
+                            Alpha2Code = "ES",
                             EnglishName = "Spain",
                             NumericCode = (short)724
                         },
                         new
                         {
-                            Alpha3Code = "lka",
-                            Alpha2Code = "lk",
+                            Alpha3Code = "LKA",
+                            Alpha2Code = "LK",
                             EnglishName = "Sri Lanka",
                             NumericCode = (short)144
                         },
                         new
                         {
-                            Alpha3Code = "sdn",
-                            Alpha2Code = "sd",
+                            Alpha3Code = "SDN",
+                            Alpha2Code = "SD",
                             EnglishName = "Sudan",
                             NumericCode = (short)729
                         },
                         new
                         {
-                            Alpha3Code = "sur",
-                            Alpha2Code = "sr",
+                            Alpha3Code = "SUR",
+                            Alpha2Code = "SR",
                             EnglishName = "Suriname",
                             NumericCode = (short)740
                         },
                         new
                         {
-                            Alpha3Code = "swe",
-                            Alpha2Code = "se",
+                            Alpha3Code = "SWE",
+                            Alpha2Code = "SE",
                             EnglishName = "Sweden",
                             NumericCode = (short)752
                         },
                         new
                         {
-                            Alpha3Code = "che",
-                            Alpha2Code = "ch",
+                            Alpha3Code = "CHE",
+                            Alpha2Code = "CH",
                             EnglishName = "Switzerland",
                             NumericCode = (short)756
                         },
                         new
                         {
-                            Alpha3Code = "syr",
-                            Alpha2Code = "sy",
+                            Alpha3Code = "SYR",
+                            Alpha2Code = "SY",
                             EnglishName = "Syrian Arab Republic",
                             NumericCode = (short)760
                         },
                         new
                         {
-                            Alpha3Code = "tjk",
-                            Alpha2Code = "tj",
+                            Alpha3Code = "TJK",
+                            Alpha2Code = "TJ",
                             EnglishName = "Tajikistan",
                             NumericCode = (short)762
                         },
                         new
                         {
-                            Alpha3Code = "tza",
-                            Alpha2Code = "tz",
+                            Alpha3Code = "TZA",
+                            Alpha2Code = "TZ",
                             EnglishName = "Tanzania, United Republic of",
                             NumericCode = (short)834
                         },
                         new
                         {
-                            Alpha3Code = "tha",
-                            Alpha2Code = "th",
+                            Alpha3Code = "THA",
+                            Alpha2Code = "TH",
                             EnglishName = "Thailand",
                             NumericCode = (short)764
                         },
                         new
                         {
-                            Alpha3Code = "tls",
-                            Alpha2Code = "tl",
+                            Alpha3Code = "TLS",
+                            Alpha2Code = "TL",
                             EnglishName = "Timor-Leste",
                             NumericCode = (short)626
                         },
                         new
                         {
-                            Alpha3Code = "tgo",
-                            Alpha2Code = "tg",
+                            Alpha3Code = "TGO",
+                            Alpha2Code = "TG",
                             EnglishName = "Togo",
                             NumericCode = (short)768
                         },
                         new
                         {
-                            Alpha3Code = "ton",
-                            Alpha2Code = "to",
+                            Alpha3Code = "TON",
+                            Alpha2Code = "TO",
                             EnglishName = "Tonga",
                             NumericCode = (short)776
                         },
                         new
                         {
-                            Alpha3Code = "tto",
-                            Alpha2Code = "tt",
+                            Alpha3Code = "TTO",
+                            Alpha2Code = "TT",
                             EnglishName = "Trinidad and Tobago",
                             NumericCode = (short)780
                         },
                         new
                         {
-                            Alpha3Code = "tun",
-                            Alpha2Code = "tn",
+                            Alpha3Code = "TUN",
+                            Alpha2Code = "TN",
                             EnglishName = "Tunisia",
                             NumericCode = (short)788
                         },
                         new
                         {
-                            Alpha3Code = "tur",
-                            Alpha2Code = "tr",
+                            Alpha3Code = "TUR",
+                            Alpha2Code = "TR",
                             EnglishName = "Türkiye",
                             NumericCode = (short)792
                         },
                         new
                         {
-                            Alpha3Code = "tkm",
-                            Alpha2Code = "tm",
+                            Alpha3Code = "TKM",
+                            Alpha2Code = "TM",
                             EnglishName = "Turkmenistan",
                             NumericCode = (short)795
                         },
                         new
                         {
-                            Alpha3Code = "tuv",
-                            Alpha2Code = "tv",
+                            Alpha3Code = "TUV",
+                            Alpha2Code = "TV",
                             EnglishName = "Tuvalu",
                             NumericCode = (short)798
                         },
                         new
                         {
-                            Alpha3Code = "uga",
-                            Alpha2Code = "ug",
+                            Alpha3Code = "UGA",
+                            Alpha2Code = "UG",
                             EnglishName = "Uganda",
                             NumericCode = (short)800
                         },
                         new
                         {
-                            Alpha3Code = "ukr",
-                            Alpha2Code = "ua",
+                            Alpha3Code = "UKR",
+                            Alpha2Code = "UA",
                             EnglishName = "Ukraine",
                             NumericCode = (short)804
                         },
                         new
                         {
-                            Alpha3Code = "are",
-                            Alpha2Code = "ae",
+                            Alpha3Code = "ARE",
+                            Alpha2Code = "AE",
                             EnglishName = "United Arab Emirates",
                             NumericCode = (short)784
                         },
                         new
                         {
-                            Alpha3Code = "gbr",
-                            Alpha2Code = "gb",
+                            Alpha3Code = "GBR",
+                            Alpha2Code = "GB",
                             EnglishName = "United Kingdom of Great Britain and Northern Ireland",
                             NumericCode = (short)826
                         },
                         new
                         {
-                            Alpha3Code = "usa",
-                            Alpha2Code = "us",
+                            Alpha3Code = "USA",
+                            Alpha2Code = "US",
                             EnglishName = "United States of America",
                             NumericCode = (short)840
                         },
                         new
                         {
-                            Alpha3Code = "ury",
-                            Alpha2Code = "uy",
+                            Alpha3Code = "URY",
+                            Alpha2Code = "UY",
                             EnglishName = "Uruguay",
                             NumericCode = (short)858
                         },
                         new
                         {
-                            Alpha3Code = "uzb",
-                            Alpha2Code = "uz",
+                            Alpha3Code = "UZB",
+                            Alpha2Code = "UZ",
                             EnglishName = "Uzbekistan",
                             NumericCode = (short)860
                         },
                         new
                         {
-                            Alpha3Code = "vut",
-                            Alpha2Code = "vu",
+                            Alpha3Code = "VUT",
+                            Alpha2Code = "VU",
                             EnglishName = "Vanuatu",
                             NumericCode = (short)548
                         },
                         new
                         {
-                            Alpha3Code = "ven",
-                            Alpha2Code = "ve",
+                            Alpha3Code = "VEN",
+                            Alpha2Code = "VE",
                             EnglishName = "Venezuela, Bolivarian Republic of",
                             NumericCode = (short)862
                         },
                         new
                         {
-                            Alpha3Code = "vnm",
-                            Alpha2Code = "vn",
+                            Alpha3Code = "VNM",
+                            Alpha2Code = "VN",
                             EnglishName = "Viet Nam",
                             NumericCode = (short)704
                         },
                         new
                         {
-                            Alpha3Code = "yem",
-                            Alpha2Code = "ye",
+                            Alpha3Code = "YEM",
+                            Alpha2Code = "YE",
                             EnglishName = "Yemen",
                             NumericCode = (short)887
                         },
                         new
                         {
-                            Alpha3Code = "zmb",
-                            Alpha2Code = "zm",
+                            Alpha3Code = "ZMB",
+                            Alpha2Code = "ZM",
                             EnglishName = "Zambia",
                             NumericCode = (short)894
                         },
                         new
                         {
-                            Alpha3Code = "zwe",
-                            Alpha2Code = "zw",
+                            Alpha3Code = "ZWE",
+                            Alpha2Code = "ZW",
                             EnglishName = "Zimbabwe",
                             NumericCode = (short)716
                         });

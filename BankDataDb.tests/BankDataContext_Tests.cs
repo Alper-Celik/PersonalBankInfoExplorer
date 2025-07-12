@@ -8,10 +8,10 @@ namespace BankDataDb.tests;
 public class BankDataContext_Tests
 {
     [Theory]
-    [InlineData("tr", "tur", "Türkiye")]
-    [InlineData("gb", "gbr", "United Kingdom of Great Britain and Northern Ireland")]
-    [InlineData("de", "deu", "Germany")]
-    [InlineData("us", "usa", "United States of America")]
+    [InlineData("TR", "TUR", "Türkiye")]
+    [InlineData("GB", "GBR", "United Kingdom of Great Britain and Northern Ireland")]
+    [InlineData("DE", "DEU", "Germany")]
+    [InlineData("US", "USA", "United States of America")]
     public async Task BankDataContext_CountrySeeding(string alpha2, string alpha3, string name)
     {
         var context = new BankDataContext();
