@@ -14,11 +14,9 @@ public class BankDataContext_Tests
     [InlineData("us", "usa", "United States of America")]
     public async Task BankDataContext_CountrySeeding(string alpha2, string alpha3, string name)
     {
-        using var connection = new SqliteConnection("Data Source=:memory:");
-        await connection.OpenAsync();
-        var context = new BankDataContext(connection);
+        var context = new BankDataContext();
 
-        await context.Database.EnsureCreatedAsync();
+        await context.Database.MigrateAsync();
 
         Country country = await context.Countries.Where(c => c.Alpha3Code == alpha3).SingleAsync();
         Assert.Equal(alpha2, country.Alpha2Code);

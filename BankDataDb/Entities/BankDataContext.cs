@@ -13,18 +13,34 @@ public class BankDataContext : DbContext
 
   private readonly string? connectionString;
   private readonly SqliteConnection? connection;
+  private readonly bool? closeConnection;
 
   public BankDataContext(DbContextOptions<BankDataContext> options) : base(options) { }
-  public BankDataContext(SqliteConnection _connection)
+  public BankDataContext(SqliteConnection _connection, bool _closeConnection = false)
   {
     this.connection = _connection;
+    this.closeConnection = _closeConnection;
   }
   public BankDataContext(string _connectionString)
   {
     this.connectionString = _connectionString;
   }
 
-  public BankDataContext() : this("Data Source=:memory:") { }
+  public BankDataContext() : this(new SqliteConnection("Data Source=:memory:"), true)
+  {
+    connection!.Open();
+  }
+
+  public override void Dispose()
+  {
+    base.Dispose();
+    if (closeConnection is not null && connection is not null && closeConnection.Value)
+    {
+      connection.Dispose();
+    }
+  }
+
+
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
