@@ -18,5 +18,5 @@ public class Currency
   public string? Name { get; set; }
 
   [JsonPropertyName("decimal_digits")]
-  public required int MinorUnitFractions { get; set; } // see : https://en.wikipedia.org/wiki/ISO_4217#Minor_unit_fractions
+  public required byte MinorUnitFractions { get; set; } // see : https://en.wikipedia.org/wiki/ISO_4217#Minor_unit_fractions
 }

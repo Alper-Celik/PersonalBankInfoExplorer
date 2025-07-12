@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankDataDb.Migrations
 {
     [DbContext(typeof(BankDataContext))]
-    [Migration("20250712204341_initial_migration")]
+    [Migration("20250712204901_initial_migration")]
     partial class initial_migration
     {
         /// <inheritdoc />
@@ -1482,7 +1482,7 @@ namespace BankDataDb.Migrations
                         .HasColumnType("char(3)")
                         .HasAnnotation("Relational:JsonPropertyName", "code");
 
-                    b.Property<int>("MinorUnitFractions")
+                    b.Property<byte>("MinorUnitFractions")
                         .HasColumnType("INTEGER")
                         .HasAnnotation("Relational:JsonPropertyName", "decimal_digits");
 
@@ -1501,715 +1501,715 @@ namespace BankDataDb.Migrations
                         new
                         {
                             CurrencyCode = "USD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "US Dollar"
                         },
                         new
                         {
                             CurrencyCode = "CAD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Canadian Dollar"
                         },
                         new
                         {
                             CurrencyCode = "EUR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Euro"
                         },
                         new
                         {
                             CurrencyCode = "AED",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "United Arab Emirates Dirham"
                         },
                         new
                         {
                             CurrencyCode = "AFN",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Afghan Afghani"
                         },
                         new
                         {
                             CurrencyCode = "ALL",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Albanian Lek"
                         },
                         new
                         {
                             CurrencyCode = "AMD",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Armenian Dram"
                         },
                         new
                         {
                             CurrencyCode = "ARS",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Argentine Peso"
                         },
                         new
                         {
                             CurrencyCode = "AUD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Australian Dollar"
                         },
                         new
                         {
                             CurrencyCode = "AZN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Azerbaijani Manat"
                         },
                         new
                         {
                             CurrencyCode = "BAM",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Bosnia-Herzegovina Convertible Mark"
                         },
                         new
                         {
                             CurrencyCode = "BDT",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Bangladeshi Taka"
                         },
                         new
                         {
                             CurrencyCode = "BGN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Bulgarian Lev"
                         },
                         new
                         {
                             CurrencyCode = "BHD",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Bahraini Dinar"
                         },
                         new
                         {
                             CurrencyCode = "BIF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Burundian Franc"
                         },
                         new
                         {
                             CurrencyCode = "BND",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Brunei Dollar"
                         },
                         new
                         {
                             CurrencyCode = "BOB",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Bolivian Boliviano"
                         },
                         new
                         {
                             CurrencyCode = "BRL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Brazilian Real"
                         },
                         new
                         {
                             CurrencyCode = "BWP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Botswanan Pula"
                         },
                         new
                         {
                             CurrencyCode = "BYN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Belarusian Ruble"
                         },
                         new
                         {
                             CurrencyCode = "BZD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Belize Dollar"
                         },
                         new
                         {
                             CurrencyCode = "CDF",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Congolese Franc"
                         },
                         new
                         {
                             CurrencyCode = "CHF",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Swiss Franc"
                         },
                         new
                         {
                             CurrencyCode = "CLP",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Chilean Peso"
                         },
                         new
                         {
                             CurrencyCode = "CNY",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Chinese Yuan"
                         },
                         new
                         {
                             CurrencyCode = "COP",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Colombian Peso"
                         },
                         new
                         {
                             CurrencyCode = "CRC",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Costa Rican Colón"
                         },
                         new
                         {
                             CurrencyCode = "CVE",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Cape Verdean Escudo"
                         },
                         new
                         {
                             CurrencyCode = "CZK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Czech Republic Koruna"
                         },
                         new
                         {
                             CurrencyCode = "DJF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Djiboutian Franc"
                         },
                         new
                         {
                             CurrencyCode = "DKK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Danish Krone"
                         },
                         new
                         {
                             CurrencyCode = "DOP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Dominican Peso"
                         },
                         new
                         {
                             CurrencyCode = "DZD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Algerian Dinar"
                         },
                         new
                         {
                             CurrencyCode = "EEK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Estonian Kroon"
                         },
                         new
                         {
                             CurrencyCode = "EGP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Egyptian Pound"
                         },
                         new
                         {
                             CurrencyCode = "ERN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Eritrean Nakfa"
                         },
                         new
                         {
                             CurrencyCode = "ETB",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Ethiopian Birr"
                         },
                         new
                         {
                             CurrencyCode = "GBP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "British Pound Sterling"
                         },
                         new
                         {
                             CurrencyCode = "GEL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Georgian Lari"
                         },
                         new
                         {
                             CurrencyCode = "GHS",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Ghanaian Cedi"
                         },
                         new
                         {
                             CurrencyCode = "GNF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Guinean Franc"
                         },
                         new
                         {
                             CurrencyCode = "GTQ",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Guatemalan Quetzal"
                         },
                         new
                         {
                             CurrencyCode = "HKD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Hong Kong Dollar"
                         },
                         new
                         {
                             CurrencyCode = "HNL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Honduran Lempira"
                         },
                         new
                         {
                             CurrencyCode = "HRK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Croatian Kuna"
                         },
                         new
                         {
                             CurrencyCode = "HUF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Hungarian Forint"
                         },
                         new
                         {
                             CurrencyCode = "IDR",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Indonesian Rupiah"
                         },
                         new
                         {
                             CurrencyCode = "ILS",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Israeli New Sheqel"
                         },
                         new
                         {
                             CurrencyCode = "INR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Indian Rupee"
                         },
                         new
                         {
                             CurrencyCode = "IQD",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Iraqi Dinar"
                         },
                         new
                         {
                             CurrencyCode = "IRR",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Iranian Rial"
                         },
                         new
                         {
                             CurrencyCode = "ISK",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Icelandic Króna"
                         },
                         new
                         {
                             CurrencyCode = "JMD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Jamaican Dollar"
                         },
                         new
                         {
                             CurrencyCode = "JOD",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Jordanian Dinar"
                         },
                         new
                         {
                             CurrencyCode = "JPY",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Japanese Yen"
                         },
                         new
                         {
                             CurrencyCode = "KES",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Kenyan Shilling"
                         },
                         new
                         {
                             CurrencyCode = "KHR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Cambodian Riel"
                         },
                         new
                         {
                             CurrencyCode = "KMF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Comorian Franc"
                         },
                         new
                         {
                             CurrencyCode = "KRW",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "South Korean Won"
                         },
                         new
                         {
                             CurrencyCode = "KWD",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Kuwaiti Dinar"
                         },
                         new
                         {
                             CurrencyCode = "KZT",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Kazakhstani Tenge"
                         },
                         new
                         {
                             CurrencyCode = "LBP",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Lebanese Pound"
                         },
                         new
                         {
                             CurrencyCode = "LKR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Sri Lankan Rupee"
                         },
                         new
                         {
                             CurrencyCode = "LTL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Lithuanian Litas"
                         },
                         new
                         {
                             CurrencyCode = "LVL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Latvian Lats"
                         },
                         new
                         {
                             CurrencyCode = "LYD",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Libyan Dinar"
                         },
                         new
                         {
                             CurrencyCode = "MAD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Moroccan Dirham"
                         },
                         new
                         {
                             CurrencyCode = "MDL",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Moldovan Leu"
                         },
                         new
                         {
                             CurrencyCode = "MGA",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Malagasy Ariary"
                         },
                         new
                         {
                             CurrencyCode = "MKD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Macedonian Denar"
                         },
                         new
                         {
                             CurrencyCode = "MMK",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Myanma Kyat"
                         },
                         new
                         {
                             CurrencyCode = "MOP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Macanese Pataca"
                         },
                         new
                         {
                             CurrencyCode = "MUR",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Mauritian Rupee"
                         },
                         new
                         {
                             CurrencyCode = "MXN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Mexican Peso"
                         },
                         new
                         {
                             CurrencyCode = "MYR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Malaysian Ringgit"
                         },
                         new
                         {
                             CurrencyCode = "MZN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Mozambican Metical"
                         },
                         new
                         {
                             CurrencyCode = "NAD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Namibian Dollar"
                         },
                         new
                         {
                             CurrencyCode = "NGN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Nigerian Naira"
                         },
                         new
                         {
                             CurrencyCode = "NIO",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Nicaraguan Córdoba"
                         },
                         new
                         {
                             CurrencyCode = "NOK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Norwegian Krone"
                         },
                         new
                         {
                             CurrencyCode = "NPR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Nepalese Rupee"
                         },
                         new
                         {
                             CurrencyCode = "NZD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "New Zealand Dollar"
                         },
                         new
                         {
                             CurrencyCode = "OMR",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Omani Rial"
                         },
                         new
                         {
                             CurrencyCode = "PAB",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Panamanian Balboa"
                         },
                         new
                         {
                             CurrencyCode = "PEN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Peruvian Nuevo Sol"
                         },
                         new
                         {
                             CurrencyCode = "PHP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Philippine Peso"
                         },
                         new
                         {
                             CurrencyCode = "PKR",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Pakistani Rupee"
                         },
                         new
                         {
                             CurrencyCode = "PLN",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Polish Zloty"
                         },
                         new
                         {
                             CurrencyCode = "PYG",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Paraguayan Guarani"
                         },
                         new
                         {
                             CurrencyCode = "QAR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Qatari Rial"
                         },
                         new
                         {
                             CurrencyCode = "RON",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Romanian Leu"
                         },
                         new
                         {
                             CurrencyCode = "RSD",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Serbian Dinar"
                         },
                         new
                         {
                             CurrencyCode = "RUB",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Russian Ruble"
                         },
                         new
                         {
                             CurrencyCode = "RWF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Rwandan Franc"
                         },
                         new
                         {
                             CurrencyCode = "SAR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Saudi Riyal"
                         },
                         new
                         {
                             CurrencyCode = "SDG",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Sudanese Pound"
                         },
                         new
                         {
                             CurrencyCode = "SEK",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Swedish Krona"
                         },
                         new
                         {
                             CurrencyCode = "SGD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Singapore Dollar"
                         },
                         new
                         {
                             CurrencyCode = "SOS",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Somali Shilling"
                         },
                         new
                         {
                             CurrencyCode = "SYP",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Syrian Pound"
                         },
                         new
                         {
                             CurrencyCode = "THB",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Thai Baht"
                         },
                         new
                         {
                             CurrencyCode = "TND",
-                            MinorUnitFractions = 3,
+                            MinorUnitFractions = (byte)3,
                             Name = "Tunisian Dinar"
                         },
                         new
                         {
                             CurrencyCode = "TOP",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Tongan Paʻanga"
                         },
                         new
                         {
                             CurrencyCode = "TRY",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Turkish Lira"
                         },
                         new
                         {
                             CurrencyCode = "TTD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Trinidad and Tobago Dollar"
                         },
                         new
                         {
                             CurrencyCode = "TWD",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "New Taiwan Dollar"
                         },
                         new
                         {
                             CurrencyCode = "TZS",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Tanzanian Shilling"
                         },
                         new
                         {
                             CurrencyCode = "UAH",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Ukrainian Hryvnia"
                         },
                         new
                         {
                             CurrencyCode = "UGX",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Ugandan Shilling"
                         },
                         new
                         {
                             CurrencyCode = "UYU",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Uruguayan Peso"
                         },
                         new
                         {
                             CurrencyCode = "UZS",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Uzbekistan Som"
                         },
                         new
                         {
                             CurrencyCode = "VEF",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "Venezuelan Bolívar"
                         },
                         new
                         {
                             CurrencyCode = "VND",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Vietnamese Dong"
                         },
                         new
                         {
                             CurrencyCode = "XAF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "CFA Franc BEAC"
                         },
                         new
                         {
                             CurrencyCode = "XOF",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "CFA Franc BCEAO"
                         },
                         new
                         {
                             CurrencyCode = "YER",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Yemeni Rial"
                         },
                         new
                         {
                             CurrencyCode = "ZAR",
-                            MinorUnitFractions = 2,
+                            MinorUnitFractions = (byte)2,
                             Name = "South African Rand"
                         },
                         new
                         {
                             CurrencyCode = "ZMK",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Zambian Kwacha"
                         },
                         new
                         {
                             CurrencyCode = "ZWL",
-                            MinorUnitFractions = 0,
+                            MinorUnitFractions = (byte)0,
                             Name = "Zimbabwean Dollar"
                         });
                 });
