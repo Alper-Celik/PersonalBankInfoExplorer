@@ -11,6 +11,8 @@ public class CardTransaction
   public TimeOnly? TransactionTime { get; set; }
   public long AmountInMinorUnit { get; set; }
 
+  public required string Comment { get; set; }
+
   [ForeignKey(nameof(Currency))]
   public required string CurrencyCode { get; set; }
   public required Currency Currency { get; set; }
