@@ -21,14 +21,20 @@ public class AkbankCreditCardImporterCsv : IBankImporter
   // first line of csv data
   //
   // example data "Kart Türü / No:;Some Axes Card / **** **** **** 1234;"
-  public string GetCardName(string data)
+  public static string GetCardName(string data)
   {
-    var cardNameAndNo = data.Split(";").ElementAt(1).Split("/");
-    var CardName = cardNameAndNo.First();
-    var Last4Digits = string.Concat(cardNameAndNo.ElementAt(1).Skip(16).Take(4));
-    return CardName + ": " + Last4Digits;
+    var cardNameAndNo = data.Split(";")[1].Split("/");
+    var CardName = cardNameAndNo[0];
+    CardName = string.Concat(CardName.Take(CardName.Length - 1));
+    return CardName;
   }
 
+  public static short GetCardLast4Digits(string data)
+  {
+    var cardNameAndNo = data.Split(";")[1].Split("/");
+    var Last4Digits = string.Concat(cardNameAndNo[1].Skip(16).Take(4));
+    return short.Parse(Last4Digits);
+  }
   public string[] SupportedFileExtensions()
   {
     return [".csv"];
