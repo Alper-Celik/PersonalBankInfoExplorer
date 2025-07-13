@@ -1,4 +1,3 @@
-
 using System.Text;
 using BankDataDb.Entities;
 
@@ -15,6 +14,49 @@ public class AkbankCreditCardImporterCsv : IBankImporter
 
     var cardName = GetCardName(data.First());
 
+  }
+
+  // parses transaction info csv line and returns CardTransaction 
+  // example csv lines:
+  // - "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;"
+  // - "17.06.2025;Chip-Para ile Ödeme;-133,60 TL;-133,60 TL / 0;"
+  // 
+  // returns null if first column is null like in sector columns ex. ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;"
+  // schema of the line is : Tarih|Açıklama|Tutar|Chip Para / Mil
+  public static CardTransaction? GetCardTransaction(string line, Card card)
+  {
+    var columns = line.Split(";");
+
+    if (columns[0] == string.Empty)
+    {
+      return null;
+    }
+
+    var dateParts = columns[0].Split(".").Select(x => int.Parse(x)).ToArray();
+    DateOnly transactionDate = new(day: dateParts[0], month: dateParts[1], year: dateParts[2]);
+
+    string comment = columns[1];
+
+    // if it has country code it is in the last part 
+    // like in "******    *****       TR"
+    Country? country = Country.GetCountry(string.Concat(comment.Reverse().TakeWhile(c => c != ' ').Reverse()));
+
+    long amountInMinorUnit = long.Parse(string.Concat(columns[2].TakeWhile(c => c != ' ').Where(c => c != '.' && c != ',')));
+
+    Currency currency = Currency.GetCurrency(string.Concat(columns[2].Reverse().TakeWhile(c => c != ' ').Reverse())) ?? new Currency { CurrencyCode = "TRY", Symbol = "TL", MinorUnitFractions = 2 };
+
+
+    return new()
+    {
+      TransactionDate = transactionDate,
+      Comment = comment,
+      AmountInMinorUnit = amountInMinorUnit,
+      CurrencyCode = currency.CurrencyCode,
+      Currency = currency,
+      Country = country,
+      CountryAlpha3Code = country?.Alpha3Code,
+      Card = card,
+    };
   }
 
   // gets card name and last 4 digits of card number from 

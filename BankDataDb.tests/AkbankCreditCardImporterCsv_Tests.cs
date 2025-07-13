@@ -1,5 +1,6 @@
 using Xunit;
 using BankDataDb.Importers;
+using BankDataDb.Entities;
 
 namespace BankDataDb.tests;
 
@@ -26,5 +27,58 @@ public class AkbankCreditCardImporterCsv_Tests
 
     Assert.Equal(expected, actual);
 
+  }
+
+  public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
+    new List<object?[]>()
+    {
+      new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;",null },
+
+      new object[] {
+        "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;",
+        new CardTransaction() {
+          TransactionDate = new DateOnly(2025, 7, 8),
+          AmountInMinorUnit = 6500,
+          Comment = "[Redacted]             [Redacted(city)]         TR",
+          CurrencyCode = "TRY",
+          CountryAlpha3Code = "TUR",
+
+          Currency = null!,
+          Card = null!
+        }
+      },
+
+      new object[] {
+        "17.06.2025;Chip-Para ile Ödeme;-133,60 TL;-133,60 TL / 0;",
+        new CardTransaction() {
+          TransactionDate = new DateOnly(2025, 6, 17),
+          Comment = "Chip-Para ile Ödeme",
+          AmountInMinorUnit = -13360,
+          CurrencyCode = "TRY",
+          CountryAlpha3Code = null,
+
+          Currency = null!,
+          Card = null!
+        }
+      }
+   };
+
+  [Theory]
+  [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
+  public void GetCardTransaction_ShouldReturnCorrectData(string line, CardTransaction? expected)
+  {
+    CardTransaction? actual = AkbankCreditCardImporterCsv.GetCardTransaction(line, null!);
+
+    if (expected is null)
+    {
+      Assert.Null(actual);
+      return;
+    }
+
+    Assert.Equal(expected.TransactionDate, actual!.TransactionDate);
+    Assert.Equal(expected.Comment, actual.Comment);
+    Assert.Equal(expected.AmountInMinorUnit, actual.AmountInMinorUnit);
+    Assert.Equal(expected.CurrencyCode, actual.CurrencyCode);
+    Assert.Equal(expected.CountryAlpha3Code, actual.CountryAlpha3Code);
   }
 }

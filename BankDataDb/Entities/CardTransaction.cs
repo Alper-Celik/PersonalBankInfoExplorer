@@ -6,11 +6,10 @@ namespace BankDataDb.Entities;
 [Table("CardTransactions")]
 public class CardTransaction
 {
-  public required int Id { get; set; }
+  public int Id { get; set; }
   public required DateOnly TransactionDate { get; set; }
   public TimeOnly? TransactionTime { get; set; }
   public long AmountInMinorUnit { get; set; }
-
   public required string Comment { get; set; }
 
   [ForeignKey(nameof(Currency))]
