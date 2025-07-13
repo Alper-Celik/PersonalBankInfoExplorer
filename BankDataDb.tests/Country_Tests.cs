@@ -5,6 +5,25 @@ namespace BankDataDb.tests;
 
 public class Country_Tests
 {
+  [Theory]
+  [InlineData("TR", "TUR")]
+  [InlineData("us", "USA")]
+  void GetCountry_SjouldReturnCorrectDataFromAlpha2Code(string alpha2, string alpha3)
+  {
+    var actual = Country.GetCountry(alpha2)?.Alpha3Code;
+
+    Assert.Equal(alpha3, actual);
+  }
+
+  [Theory]
+  [InlineData("tur", "TR")]
+  [InlineData("USA", "US")]
+  void GetCountry_SjouldReturnCorrectDataFromAlpha3Code(string alpha3, string alpha2)
+  {
+    var actual = Country.GetCountry(alpha3)?.Alpha2Code;
+
+    Assert.Equal(alpha2, actual);
+  }
 
   [Theory]
   [InlineData("TR", "TUR", "Türkiye")]
