@@ -20,6 +20,10 @@ public class CardTransaction
   [ForeignKey(nameof(Country))]
   public string? CountryAlpha3Code { get; set; }
   public Country? Country { get; set; }
+
+  [ForeignKey(nameof(Card))]
+  public int CardId { get; set; }
+  public required Card Card { get; set; }
   // ...
 
 }
