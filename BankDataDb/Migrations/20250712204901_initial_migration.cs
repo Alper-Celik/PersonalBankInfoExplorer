@@ -16,14 +16,16 @@ namespace BankDataDb.Migrations
                 name: "Banks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table
+                        .Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Banks", x => x.Id);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Countries",
@@ -32,12 +34,13 @@ namespace BankDataDb.Migrations
                     Alpha3Code = table.Column<string>(type: "TEXT", nullable: false),
                     Alpha2Code = table.Column<string>(type: "TEXT", nullable: false),
                     NumericCode = table.Column<short>(type: "INTEGER", nullable: false),
-                    EnglishName = table.Column<string>(type: "TEXT", nullable: false)
+                    EnglishName = table.Column<string>(type: "TEXT", nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Alpha3Code);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Currencies",
@@ -45,22 +48,24 @@ namespace BankDataDb.Migrations
                 {
                     CurrencyCode = table.Column<string>(type: "char(3)", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    MinorUnitFractions = table.Column<byte>(type: "INTEGER", nullable: false)
+                    MinorUnitFractions = table.Column<byte>(type: "INTEGER", nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Currencies", x => x.CurrencyCode);
-                });
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "Cards",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table
+                        .Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     CardType = table.Column<int>(type: "varchar(50)", nullable: false),
-                    BankId = table.Column<int>(type: "INTEGER", nullable: false)
+                    BankId = table.Column<int>(type: "INTEGER", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -70,20 +75,23 @@ namespace BankDataDb.Migrations
                         column: x => x.BankId,
                         principalTable: "Banks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+                        onDelete: ReferentialAction.Cascade
+                    );
+                }
+            );
 
             migrationBuilder.CreateTable(
                 name: "CardTransactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table
+                        .Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TransactionDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     TransactionTime = table.Column<TimeOnly>(type: "TEXT", nullable: true),
                     AmountInMinorUnit = table.Column<long>(type: "INTEGER", nullable: false),
                     CurrencyCode = table.Column<string>(type: "char(3)", nullable: false),
-                    CountryAlpha3Code = table.Column<string>(type: "TEXT", nullable: true)
+                    CountryAlpha3Code = table.Column<string>(type: "TEXT", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -92,14 +100,17 @@ namespace BankDataDb.Migrations
                         name: "FK_CardTransactions_Countries_CountryAlpha3Code",
                         column: x => x.CountryAlpha3Code,
                         principalTable: "Countries",
-                        principalColumn: "Alpha3Code");
+                        principalColumn: "Alpha3Code"
+                    );
                     table.ForeignKey(
                         name: "FK_CardTransactions_Currencies_CurrencyCode",
                         column: x => x.CurrencyCode,
                         principalTable: "Currencies",
                         principalColumn: "CurrencyCode",
-                        onDelete: ReferentialAction.Cascade);
-                });
+                        onDelete: ReferentialAction.Cascade
+                    );
+                }
+            );
 
             migrationBuilder.InsertData(
                 table: "Countries",
@@ -167,7 +178,12 @@ namespace BankDataDb.Migrations
                     { "FRA", "FR", "France", (short)250 },
                     { "FSM", "FM", "Micronesia, Federated States of", (short)583 },
                     { "GAB", "GA", "Gabon", (short)266 },
-                    { "GBR", "GB", "United Kingdom of Great Britain and Northern Ireland", (short)826 },
+                    {
+                        "GBR",
+                        "GB",
+                        "United Kingdom of Great Britain and Northern Ireland",
+                        (short)826,
+                    },
                     { "GEO", "GE", "Georgia", (short)268 },
                     { "GHA", "GH", "Ghana", (short)288 },
                     { "GIN", "GN", "Guinea", (short)324 },
@@ -298,8 +314,9 @@ namespace BankDataDb.Migrations
                     { "YEM", "YE", "Yemen", (short)887 },
                     { "ZAF", "ZA", "South Africa", (short)710 },
                     { "ZMB", "ZM", "Zambia", (short)894 },
-                    { "ZWE", "ZW", "Zimbabwe", (short)716 }
-                });
+                    { "ZWE", "ZW", "Zimbabwe", (short)716 },
+                }
+            );
 
             migrationBuilder.InsertData(
                 table: "Currencies",
@@ -424,66 +441,65 @@ namespace BankDataDb.Migrations
                     { "YER", (byte)0, "Yemeni Rial" },
                     { "ZAR", (byte)2, "South African Rand" },
                     { "ZMK", (byte)0, "Zambian Kwacha" },
-                    { "ZWL", (byte)0, "Zimbabwean Dollar" }
-                });
+                    { "ZWL", (byte)0, "Zimbabwean Dollar" },
+                }
+            );
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Cards_BankId",
-                table: "Cards",
-                column: "BankId");
+            migrationBuilder.CreateIndex(name: "IX_Cards_BankId", table: "Cards", column: "BankId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CardTransactions_CountryAlpha3Code",
                 table: "CardTransactions",
-                column: "CountryAlpha3Code");
+                column: "CountryAlpha3Code"
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_CardTransactions_CurrencyCode",
                 table: "CardTransactions",
-                column: "CurrencyCode");
+                column: "CurrencyCode"
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_Alpha2Code",
                 table: "Countries",
                 column: "Alpha2Code",
-                unique: true);
+                unique: true
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_Alpha3Code",
                 table: "Countries",
                 column: "Alpha3Code",
-                unique: true);
+                unique: true
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_NumericCode",
                 table: "Countries",
                 column: "NumericCode",
-                unique: true);
+                unique: true
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Currencies_CurrencyCode",
                 table: "Currencies",
                 column: "CurrencyCode",
-                unique: true);
+                unique: true
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Cards");
+            migrationBuilder.DropTable(name: "Cards");
 
-            migrationBuilder.DropTable(
-                name: "CardTransactions");
+            migrationBuilder.DropTable(name: "CardTransactions");
 
-            migrationBuilder.DropTable(
-                name: "Banks");
+            migrationBuilder.DropTable(name: "Banks");
 
-            migrationBuilder.DropTable(
-                name: "Countries");
+            migrationBuilder.DropTable(name: "Countries");
 
-            migrationBuilder.DropTable(
-                name: "Currencies");
+            migrationBuilder.DropTable(name: "Currencies");
         }
     }
 }

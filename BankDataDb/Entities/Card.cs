@@ -15,12 +15,11 @@ public class Card
     public int BankId { get; set; }
 
     public Bank IssuedBank { get; set; } = null!;
-
 }
 
 public enum CardTypes
 {
     CreditCard,
     DebitCard,
-    PrePaidCard
+    PrePaidCard,
 }

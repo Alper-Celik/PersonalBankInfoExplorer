@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace BankDataDb.Entities;
@@ -34,8 +33,10 @@ public class Country
         Country? result = null;
 
         var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
-        var jsonPath = Path.Combine(assemblyPath, "SeedData", "countries.seed.json");//from https://github.com/stefangabos/world_countries/blob/3480efd5b52aee45ebc22afa224cc05b70c500df/data/countries/en/countries.json
-        List<Country> countries = JsonSerializer.Deserialize<List<Country>>(File.ReadAllText(jsonPath)) ?? throw new UnreachableException("json not found");
+        var jsonPath = Path.Combine(assemblyPath, "SeedData", "countries.seed.json"); //from https://github.com/stefangabos/world_countries/blob/3480efd5b52aee45ebc22afa224cc05b70c500df/data/countries/en/countries.json
+        List<Country> countries =
+            JsonSerializer.Deserialize<List<Country>>(File.ReadAllText(jsonPath))
+            ?? throw new UnreachableException("json not found");
 
         foreach (var country in countries)
         {
@@ -60,5 +61,4 @@ public class Country
 
         return result;
     }
-
 }

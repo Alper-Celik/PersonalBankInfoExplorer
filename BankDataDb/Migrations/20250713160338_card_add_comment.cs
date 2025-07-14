@@ -15,15 +15,14 @@ namespace BankDataDb.Migrations
                 table: "CardTransactions",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Comment",
-                table: "CardTransactions");
+            migrationBuilder.DropColumn(name: "Comment", table: "CardTransactions");
         }
     }
 }

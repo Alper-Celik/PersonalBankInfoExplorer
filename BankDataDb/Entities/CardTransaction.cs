@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankDataDb.Entities;
@@ -24,5 +23,4 @@ public class CardTransaction
     public int CardId { get; set; }
     public required Card Card { get; set; }
     // ...
-
 }

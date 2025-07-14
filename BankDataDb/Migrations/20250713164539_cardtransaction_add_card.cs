@@ -15,12 +15,14 @@ namespace BankDataDb.Migrations
                 table: "CardTransactions",
                 type: "INTEGER",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: 0
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_CardTransactions_CardId",
                 table: "CardTransactions",
-                column: "CardId");
+                column: "CardId"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_CardTransactions_Cards_CardId",
@@ -28,7 +30,8 @@ namespace BankDataDb.Migrations
                 column: "CardId",
                 principalTable: "Cards",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         /// <inheritdoc />
@@ -36,15 +39,15 @@ namespace BankDataDb.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_CardTransactions_Cards_CardId",
-                table: "CardTransactions");
+                table: "CardTransactions"
+            );
 
             migrationBuilder.DropIndex(
                 name: "IX_CardTransactions_CardId",
-                table: "CardTransactions");
+                table: "CardTransactions"
+            );
 
-            migrationBuilder.DropColumn(
-                name: "CardId",
-                table: "CardTransactions");
+            migrationBuilder.DropColumn(name: "CardId", table: "CardTransactions");
         }
     }
 }

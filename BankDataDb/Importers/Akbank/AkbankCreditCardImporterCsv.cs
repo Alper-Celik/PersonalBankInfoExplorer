@@ -1,5 +1,4 @@
 using System.Text;
-
 using BankDataDb.Entities;
 
 namespace BankDataDb.Importers;
@@ -9,17 +8,14 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     public async Task Import(BankDataContext context, string filePath)
     {
         IEnumerable<string> data = File.ReadLines(
-          filePath,
-          Encoding.GetEncoding("windows-1254") // windows turkish since akbank seems to encode it in it for some reason
+            filePath,
+            Encoding.GetEncoding("windows-1254") // windows turkish since akbank seems to encode it in it for some reason
         );
 
         Bank? akbank = context.Banks.FirstOrDefault(b => b.Name == "Akbank");
         if (akbank is null)
         {
-            akbank = new Bank()
-            {
-                Name = "Akbank"
-            };
+            akbank = new Bank() { Name = "Akbank" };
             await context.Banks.AddAsync(akbank);
         }
 
@@ -36,12 +32,13 @@ public class AkbankCreditCardImporterCsv : IBankImporter
             await context.AddAsync(cardFromStatement);
         }
 
-
         await context.SaveChangesAsync();
     }
 
     public static IEnumerable<string> GetTransactionLines(IEnumerable<string> lines) =>
-        lines.SkipWhile(l => !l.StartsWith("Tarih")).Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
+        lines
+            .SkipWhile(l => !l.StartsWith("Tarih"))
+            .Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
             .TakeWhile(l => l.Contains(";")); // last lines doesn't contain semicolons
 
     // parses transaction info csv line and returns CardTransaction
@@ -68,21 +65,23 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         // if it has country code it is in the last part
         // like in "******    *****       TR"
         Country? country = Country.GetCountry(
-          string.Concat(comment.Reverse().TakeWhile(c => c != ' ').Reverse())
+            string.Concat(comment.Reverse().TakeWhile(c => c != ' ').Reverse())
         );
 
         long amountInMinorUnit = long.Parse(
-          string.Concat(columns[2].TakeWhile(c => c != ' ').Where(c => c != '.' && c != ','))
+            string.Concat(columns[2].TakeWhile(c => c != ' ').Where(c => c != '.' && c != ','))
         );
 
         Currency currency =
-          Currency.GetCurrency(string.Concat(columns[2].Reverse().TakeWhile(c => c != ' ').Reverse()))
-          ?? new Currency
-          {
-              CurrencyCode = "TRY",
-              Symbol = "TL",
-              MinorUnitFractions = 2,
-          };
+            Currency.GetCurrency(
+                string.Concat(columns[2].Reverse().TakeWhile(c => c != ' ').Reverse())
+            )
+            ?? new Currency
+            {
+                CurrencyCode = "TRY",
+                Symbol = "TL",
+                MinorUnitFractions = 2,
+            };
 
         return new()
         {
@@ -119,6 +118,5 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     public string[] SupportedFileExtensions()
     {
         return [".csv"];
-
     }
 }

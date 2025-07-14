@@ -15,848 +15,966 @@ namespace BankDataDb.Migrations
                 table: "Currencies",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "AED",
                 column: "Symbol",
-                value: "AED");
+                value: "AED"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "AFN",
                 column: "Symbol",
-                value: "Af");
+                value: "Af"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ALL",
                 column: "Symbol",
-                value: "ALL");
+                value: "ALL"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "AMD",
                 column: "Symbol",
-                value: "AMD");
+                value: "AMD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ARS",
                 column: "Symbol",
-                value: "AR$");
+                value: "AR$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "AUD",
                 column: "Symbol",
-                value: "AU$");
+                value: "AU$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "AZN",
                 column: "Symbol",
-                value: "man.");
+                value: "man."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BAM",
                 column: "Symbol",
-                value: "KM");
+                value: "KM"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BDT",
                 column: "Symbol",
-                value: "Tk");
+                value: "Tk"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BGN",
                 column: "Symbol",
-                value: "BGN");
+                value: "BGN"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BHD",
                 column: "Symbol",
-                value: "BD");
+                value: "BD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BIF",
                 column: "Symbol",
-                value: "FBu");
+                value: "FBu"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BND",
                 column: "Symbol",
-                value: "BN$");
+                value: "BN$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BOB",
                 column: "Symbol",
-                value: "Bs");
+                value: "Bs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BRL",
                 column: "Symbol",
-                value: "R$");
+                value: "R$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BWP",
                 column: "Symbol",
-                value: "BWP");
+                value: "BWP"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BYN",
                 column: "Symbol",
-                value: "Br");
+                value: "Br"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "BZD",
                 column: "Symbol",
-                value: "BZ$");
+                value: "BZ$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CAD",
                 column: "Symbol",
-                value: "CA$");
+                value: "CA$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CDF",
                 column: "Symbol",
-                value: "CDF");
+                value: "CDF"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CHF",
                 column: "Symbol",
-                value: "CHF");
+                value: "CHF"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CLP",
                 column: "Symbol",
-                value: "CL$");
+                value: "CL$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CNY",
                 column: "Symbol",
-                value: "CN¥");
+                value: "CN¥"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "COP",
                 column: "Symbol",
-                value: "CO$");
+                value: "CO$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CRC",
                 column: "Symbol",
-                value: "₡");
+                value: "₡"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CVE",
                 column: "Symbol",
-                value: "CV$");
+                value: "CV$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "CZK",
                 column: "Symbol",
-                value: "Kč");
+                value: "Kč"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "DJF",
                 column: "Symbol",
-                value: "Fdj");
+                value: "Fdj"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "DKK",
                 column: "Symbol",
-                value: "Dkr");
+                value: "Dkr"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "DOP",
                 column: "Symbol",
-                value: "RD$");
+                value: "RD$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "DZD",
                 column: "Symbol",
-                value: "DA");
+                value: "DA"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "EEK",
                 column: "Symbol",
-                value: "Ekr");
+                value: "Ekr"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "EGP",
                 column: "Symbol",
-                value: "EGP");
+                value: "EGP"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ERN",
                 column: "Symbol",
-                value: "Nfk");
+                value: "Nfk"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ETB",
                 column: "Symbol",
-                value: "Br");
+                value: "Br"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "EUR",
                 column: "Symbol",
-                value: "€");
+                value: "€"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "GBP",
                 column: "Symbol",
-                value: "£");
+                value: "£"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "GEL",
                 column: "Symbol",
-                value: "GEL");
+                value: "GEL"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "GHS",
                 column: "Symbol",
-                value: "GH₵");
+                value: "GH₵"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "GNF",
                 column: "Symbol",
-                value: "FG");
+                value: "FG"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "GTQ",
                 column: "Symbol",
-                value: "GTQ");
+                value: "GTQ"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "HKD",
                 column: "Symbol",
-                value: "HK$");
+                value: "HK$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "HNL",
                 column: "Symbol",
-                value: "HNL");
+                value: "HNL"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "HRK",
                 column: "Symbol",
-                value: "kn");
+                value: "kn"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "HUF",
                 column: "Symbol",
-                value: "Ft");
+                value: "Ft"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "IDR",
                 column: "Symbol",
-                value: "Rp");
+                value: "Rp"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ILS",
                 column: "Symbol",
-                value: "₪");
+                value: "₪"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "INR",
                 column: "Symbol",
-                value: "Rs");
+                value: "Rs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "IQD",
                 column: "Symbol",
-                value: "IQD");
+                value: "IQD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "IRR",
                 column: "Symbol",
-                value: "IRR");
+                value: "IRR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ISK",
                 column: "Symbol",
-                value: "Ikr");
+                value: "Ikr"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "JMD",
                 column: "Symbol",
-                value: "J$");
+                value: "J$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "JOD",
                 column: "Symbol",
-                value: "JD");
+                value: "JD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "JPY",
                 column: "Symbol",
-                value: "¥");
+                value: "¥"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KES",
                 column: "Symbol",
-                value: "Ksh");
+                value: "Ksh"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KHR",
                 column: "Symbol",
-                value: "KHR");
+                value: "KHR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KMF",
                 column: "Symbol",
-                value: "CF");
+                value: "CF"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KRW",
                 column: "Symbol",
-                value: "₩");
+                value: "₩"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KWD",
                 column: "Symbol",
-                value: "KD");
+                value: "KD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "KZT",
                 column: "Symbol",
-                value: "KZT");
+                value: "KZT"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "LBP",
                 column: "Symbol",
-                value: "L.L.");
+                value: "L.L."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "LKR",
                 column: "Symbol",
-                value: "SLRs");
+                value: "SLRs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "LTL",
                 column: "Symbol",
-                value: "Lt");
+                value: "Lt"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "LVL",
                 column: "Symbol",
-                value: "Ls");
+                value: "Ls"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "LYD",
                 column: "Symbol",
-                value: "LD");
+                value: "LD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MAD",
                 column: "Symbol",
-                value: "MAD");
+                value: "MAD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MDL",
                 column: "Symbol",
-                value: "MDL");
+                value: "MDL"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MGA",
                 column: "Symbol",
-                value: "MGA");
+                value: "MGA"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MKD",
                 column: "Symbol",
-                value: "MKD");
+                value: "MKD"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MMK",
                 column: "Symbol",
-                value: "MMK");
+                value: "MMK"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MOP",
                 column: "Symbol",
-                value: "MOP$");
+                value: "MOP$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MUR",
                 column: "Symbol",
-                value: "MURs");
+                value: "MURs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MXN",
                 column: "Symbol",
-                value: "MX$");
+                value: "MX$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MYR",
                 column: "Symbol",
-                value: "RM");
+                value: "RM"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "MZN",
                 column: "Symbol",
-                value: "MTn");
+                value: "MTn"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NAD",
                 column: "Symbol",
-                value: "N$");
+                value: "N$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NGN",
                 column: "Symbol",
-                value: "₦");
+                value: "₦"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NIO",
                 column: "Symbol",
-                value: "C$");
+                value: "C$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NOK",
                 column: "Symbol",
-                value: "Nkr");
+                value: "Nkr"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NPR",
                 column: "Symbol",
-                value: "NPRs");
+                value: "NPRs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "NZD",
                 column: "Symbol",
-                value: "NZ$");
+                value: "NZ$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "OMR",
                 column: "Symbol",
-                value: "OMR");
+                value: "OMR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PAB",
                 column: "Symbol",
-                value: "B/.");
+                value: "B/."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PEN",
                 column: "Symbol",
-                value: "S/.");
+                value: "S/."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PHP",
                 column: "Symbol",
-                value: "₱");
+                value: "₱"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PKR",
                 column: "Symbol",
-                value: "PKRs");
+                value: "PKRs"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PLN",
                 column: "Symbol",
-                value: "zł");
+                value: "zł"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "PYG",
                 column: "Symbol",
-                value: "₲");
+                value: "₲"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "QAR",
                 column: "Symbol",
-                value: "QR");
+                value: "QR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "RON",
                 column: "Symbol",
-                value: "RON");
+                value: "RON"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "RSD",
                 column: "Symbol",
-                value: "din.");
+                value: "din."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "RUB",
                 column: "Symbol",
-                value: "RUB");
+                value: "RUB"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "RWF",
                 column: "Symbol",
-                value: "RWF");
+                value: "RWF"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SAR",
                 column: "Symbol",
-                value: "SR");
+                value: "SR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SDG",
                 column: "Symbol",
-                value: "SDG");
+                value: "SDG"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SEK",
                 column: "Symbol",
-                value: "Skr");
+                value: "Skr"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SGD",
                 column: "Symbol",
-                value: "S$");
+                value: "S$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SOS",
                 column: "Symbol",
-                value: "Ssh");
+                value: "Ssh"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "SYP",
                 column: "Symbol",
-                value: "SY£");
+                value: "SY£"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "THB",
                 column: "Symbol",
-                value: "฿");
+                value: "฿"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TND",
                 column: "Symbol",
-                value: "DT");
+                value: "DT"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TOP",
                 column: "Symbol",
-                value: "T$");
+                value: "T$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TRY",
                 column: "Symbol",
-                value: "TL");
+                value: "TL"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TTD",
                 column: "Symbol",
-                value: "TT$");
+                value: "TT$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TWD",
                 column: "Symbol",
-                value: "NT$");
+                value: "NT$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "TZS",
                 column: "Symbol",
-                value: "TSh");
+                value: "TSh"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "UAH",
                 column: "Symbol",
-                value: "₴");
+                value: "₴"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "UGX",
                 column: "Symbol",
-                value: "USh");
+                value: "USh"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "USD",
                 column: "Symbol",
-                value: "$");
+                value: "$"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "UYU",
                 column: "Symbol",
-                value: "$U");
+                value: "$U"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "UZS",
                 column: "Symbol",
-                value: "UZS");
+                value: "UZS"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "VEF",
                 column: "Symbol",
-                value: "Bs.F.");
+                value: "Bs.F."
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "VND",
                 column: "Symbol",
-                value: "₫");
+                value: "₫"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "XAF",
                 column: "Symbol",
-                value: "FCFA");
+                value: "FCFA"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "XOF",
                 column: "Symbol",
-                value: "CFA");
+                value: "CFA"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "YER",
                 column: "Symbol",
-                value: "YR");
+                value: "YR"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ZAR",
                 column: "Symbol",
-                value: "R");
+                value: "R"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ZMK",
                 column: "Symbol",
-                value: "ZK");
+                value: "ZK"
+            );
 
             migrationBuilder.UpdateData(
                 table: "Currencies",
                 keyColumn: "CurrencyCode",
                 keyValue: "ZWL",
                 column: "Symbol",
-                value: "ZWL$");
+                value: "ZWL$"
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Symbol",
-                table: "Currencies");
+            migrationBuilder.DropColumn(name: "Symbol", table: "Currencies");
         }
     }
 }

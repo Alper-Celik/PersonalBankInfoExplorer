@@ -1,5 +1,4 @@
 using BankDataDb.Entities;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace BankDataDb.tests;

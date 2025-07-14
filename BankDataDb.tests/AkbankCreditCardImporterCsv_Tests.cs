@@ -6,31 +6,36 @@ namespace BankDataDb.tests;
 public class AkbankCreditCardImporterCsv_Tests
 {
     public static IEnumerable<object[]?> GetTransactionLines_ShouldReturnData_Data =>
-        new List<object[]?> {
+        new List<object[]?>
+        {
             new object[]
             {
                 new List<string>
                 {
                     "some line;",
                     "some other line ; test;",
-                   "Tarih;Açıklama;Tutar;Chip Para / Mil;",
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                   "",
-                   "Akbank T.A.Ş."
+                    "Tarih;Açıklama;Tutar;Chip Para / Mil;",
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                    "",
+                    "Akbank T.A.Ş.",
                 },
                 new List<string>
                 {
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                }
-            }
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                    "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                },
+            },
         };
+
     [Theory]
     [MemberData(nameof(GetTransactionLines_ShouldReturnData_Data))]
-    public void GetTransactionLines_ShouldReturnData(IEnumerable<string> data, IEnumerable<string> expected)
+    public void GetTransactionLines_ShouldReturnData(
+        IEnumerable<string> data,
+        IEnumerable<string> expected
+    )
     {
         var actual = AkbankCreditCardImporterCsv.GetTransactionLines(data);
 
@@ -38,39 +43,41 @@ public class AkbankCreditCardImporterCsv_Tests
     }
 
     public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
-      new List<object?[]>()
-      {
-      new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;",null },
+        new List<object?[]>()
+        {
+            new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;", null },
+            new object[]
+            {
+                "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;",
+                new CardTransaction()
+                {
+                    TransactionDate = new DateOnly(2025, 7, 8),
+                    AmountInMinorUnit = 6500,
+                    Comment = "[Redacted]             [Redacted(city)]         TR",
+                    CurrencyCode = "TRY",
+                    CountryAlpha3Code = "TUR",
 
-      new object[]
-      {
-        "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;",
-        new CardTransaction() {
-          TransactionDate = new DateOnly(2025, 7, 8),
-          AmountInMinorUnit = 6500,
-          Comment = "[Redacted]             [Redacted(city)]         TR",
-          CurrencyCode = "TRY",
-          CountryAlpha3Code = "TUR",
+                    Currency = null!,
+                    Card = null!,
+                },
+            },
+            new object[]
+            {
+                "17.06.2025;Chip-Para ile Ödeme;-133,60 TL;-133,60 TL / 0;",
+                new CardTransaction()
+                {
+                    TransactionDate = new DateOnly(2025, 6, 17),
+                    Comment = "Chip-Para ile Ödeme",
+                    AmountInMinorUnit = -13360,
+                    CurrencyCode = "TRY",
+                    CountryAlpha3Code = null,
 
-          Currency = null!,
-          Card = null!
-        }
-      },
+                    Currency = null!,
+                    Card = null!,
+                },
+            },
+        };
 
-      new object[] {
-        "17.06.2025;Chip-Para ile Ödeme;-133,60 TL;-133,60 TL / 0;",
-        new CardTransaction() {
-          TransactionDate = new DateOnly(2025, 6, 17),
-          Comment = "Chip-Para ile Ödeme",
-          AmountInMinorUnit = -13360,
-          CurrencyCode = "TRY",
-          CountryAlpha3Code = null,
-
-          Currency = null!,
-          Card = null!
-        }
-      }
-     };
     [Theory]
     [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
     public void GetCardTransaction_ShouldReturnCorrectData(string line, CardTransaction? expected)
@@ -120,5 +127,4 @@ public class AkbankCreditCardImporterCsv_Tests
 
         Assert.Equal(expected, actual);
     }
-
 }
