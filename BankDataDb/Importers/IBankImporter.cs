@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 using BankDataDb.Entities;
 
 namespace BankDataDb.Importers;

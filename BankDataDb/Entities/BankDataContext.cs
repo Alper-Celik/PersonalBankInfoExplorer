@@ -1,11 +1,7 @@
-using System.Diagnostics;
 using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace BankDataDb.Entities;
 
@@ -60,10 +56,10 @@ public class BankDataContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
-    public DbSet<Country> Countries { get; set; }
-    public DbSet<Currency> Currencies { get; set; }
-    public DbSet<Bank> Banks { get; set; }
-    public DbSet<Card> Cards { get; set; }
-    public DbSet<CardTransaction> cardTransactions { get; set; }
+    public DbSet<Country> Countries { get; set; } = null!;
+    public DbSet<Currency> Currencies { get; set; } = null!;
+    public DbSet<Bank> Banks { get; set; } = null!;
+    public DbSet<Card> Cards { get; set; } = null!;
+    public DbSet<CardTransaction> cardTransactions { get; set; } = null!;
 
 }

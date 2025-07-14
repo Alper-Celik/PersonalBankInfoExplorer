@@ -2,10 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
-using System.Text;
 using System.Text.Json;
-
-using BankDataDb.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

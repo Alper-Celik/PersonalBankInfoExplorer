@@ -6,7 +6,7 @@ namespace BankDataDb.Importers;
 
 public class AkbankCreditCardImporterCsv : IBankImporter
 {
-    public async Task Import(BankDataContext context, string filePath)
+    public Task Import(BankDataContext context, string filePath)
     {
         IEnumerable<string> data = File.ReadLines(
           filePath,
@@ -14,6 +14,8 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         );
 
         var cardName = GetCardName(data.First());
+
+        return Task.CompletedTask;
     }
 
     // parses transaction info csv line and returns CardTransaction
