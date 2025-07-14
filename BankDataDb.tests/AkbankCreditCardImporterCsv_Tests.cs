@@ -3,6 +3,7 @@ using BankDataDb.Importers;
 
 namespace BankDataDb.tests;
 
+// TODO: add tests for import function with in memory sqlite database
 public class AkbankCreditCardImporterCsv_Tests
 {
     public static IEnumerable<object[]?> GetTransactionLines_ShouldReturnData_Data =>
