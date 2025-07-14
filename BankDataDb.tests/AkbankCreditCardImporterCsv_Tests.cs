@@ -1,35 +1,10 @@
 using BankDataDb.Entities;
 using BankDataDb.Importers;
 
-using Xunit;
-
 namespace BankDataDb.tests;
 
 public class AkbankCreditCardImporterCsv_Tests
 {
-    [Theory]
-    [InlineData("Some Axes Card", "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
-    [InlineData("Some Other Card", "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
-    public void GetCardName_SholdReturnCorrectData(string expected, string data)
-    {
-
-        string actual = AkbankCreditCardImporterCsv.GetCardName(data);
-
-        Assert.Equal(expected, actual);
-    }
-
-    [Theory]
-    [InlineData(1234, "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
-    [InlineData(4321, "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
-    public void GetCardLast4Digits_SholdReturnCorrectData(short expected, string data)
-    {
-
-        short actual = AkbankCreditCardImporterCsv.GetCardLast4Digits(data);
-
-        Assert.Equal(expected, actual);
-
-    }
-
     public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
       new List<object?[]>()
       {
@@ -63,7 +38,6 @@ public class AkbankCreditCardImporterCsv_Tests
         }
       }
      };
-
     [Theory]
     [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
     public void GetCardTransaction_ShouldReturnCorrectData(string line, CardTransaction? expected)
@@ -82,4 +56,36 @@ public class AkbankCreditCardImporterCsv_Tests
         Assert.Equal(expected.CurrencyCode, actual.CurrencyCode);
         Assert.Equal(expected.CountryAlpha3Code, actual.CountryAlpha3Code);
     }
+
+    [Theory]
+    [InlineData("Some Axes Card", "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
+    [InlineData("Some Other Card", "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
+    public void GetCardName_SholdReturnCorrectData(string expected, string data)
+    {
+        string actual = AkbankCreditCardImporterCsv.GetCardName(data);
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(1234, "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
+    [InlineData(4321, "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
+    public void GetCardLast4Digits_SholdReturnCorrectData(short expected, string data)
+    {
+        short actual = AkbankCreditCardImporterCsv.GetCardLast4Digits(data);
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void SupportedFileExtensions_ShouldReturnCorrectData()
+    {
+        AkbankCreditCardImporterCsv importer = new();
+        string[] expected = [".csv"];
+
+        var actual = importer.SupportedFileExtensions();
+
+        Assert.Equal(expected, actual);
+    }
+
 }
