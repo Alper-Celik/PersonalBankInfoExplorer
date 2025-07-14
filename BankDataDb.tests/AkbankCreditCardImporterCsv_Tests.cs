@@ -5,12 +5,45 @@ namespace BankDataDb.tests;
 
 public class AkbankCreditCardImporterCsv_Tests
 {
+    public static IEnumerable<object[]?> GetTransactionLines_ShouldReturnData_Data =>
+        new List<object[]?> {
+            new object[]
+            {
+                new List<string>
+                {
+                    "some line;",
+                    "some other line ; test;",
+                   "Tarih;Açıklama;Tutar;Chip Para / Mil;",
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                   "",
+                   "Akbank T.A.Ş."
+                },
+                new List<string>
+                {
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                   "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
+                }
+            }
+        };
+    [Theory]
+    [MemberData(nameof(GetTransactionLines_ShouldReturnData_Data))]
+    public void GetTransactionLines_ShouldReturnData(IEnumerable<string> data, IEnumerable<string> expected)
+    {
+        var actual = AkbankCreditCardImporterCsv.GetTransactionLines(data);
+
+        Assert.Equal(expected, actual);
+    }
+
     public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
       new List<object?[]>()
       {
       new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;",null },
 
-      new object[] {
+      new object[]
+      {
         "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;",
         new CardTransaction() {
           TransactionDate = new DateOnly(2025, 7, 8),

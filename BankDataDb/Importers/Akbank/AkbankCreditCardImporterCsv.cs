@@ -18,6 +18,10 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return Task.CompletedTask;
     }
 
+    public static IEnumerable<string> GetTransactionLines(IEnumerable<string> lines) =>
+        lines.SkipWhile(l => !l.StartsWith("Tarih")).Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
+            .TakeWhile(l => l.Contains(";")); // last lines doesn't contain semicolons
+
     // parses transaction info csv line and returns CardTransaction
     // example csv lines:
     // - "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;"
