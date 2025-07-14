@@ -6,16 +6,38 @@ namespace BankDataDb.Importers;
 
 public class AkbankCreditCardImporterCsv : IBankImporter
 {
-    public Task Import(BankDataContext context, string filePath)
+    public async Task Import(BankDataContext context, string filePath)
     {
         IEnumerable<string> data = File.ReadLines(
           filePath,
           Encoding.GetEncoding("windows-1254") // windows turkish since akbank seems to encode it in it for some reason
         );
 
-        var cardName = GetCardName(data.First());
+        Bank? akbank = context.Banks.FirstOrDefault(b => b.Name == "Akbank");
+        if (akbank is null)
+        {
+            akbank = new Bank()
+            {
+                Name = "Akbank"
+            };
+            await context.Banks.AddAsync(akbank);
+        }
 
-        return Task.CompletedTask;
+        short cardLast4Digits = GetCardLast4Digits(data.First());
+        Card? cardFromStatement = context.Cards.FirstOrDefault(c => c.Id == cardLast4Digits);
+        if (cardFromStatement is null)
+        {
+            cardFromStatement = new()
+            {
+                Id = cardLast4Digits,
+                Name = GetCardName(data.First()),
+                IssuedBank = akbank,
+            };
+            await context.AddAsync(cardFromStatement);
+        }
+
+
+        await context.SaveChangesAsync();
     }
 
     public static IEnumerable<string> GetTransactionLines(IEnumerable<string> lines) =>
@@ -97,5 +119,6 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     public string[] SupportedFileExtensions()
     {
         return [".csv"];
+
     }
 }
