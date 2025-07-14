@@ -32,6 +32,26 @@ public class AkbankCreditCardImporterCsv : IBankImporter
             await context.AddAsync(cardFromStatement);
         }
 
+        List<CardTransaction> transactions = [];
+        string transactionCategory = "";
+        foreach (var transactionLine in GetTransactionLines(data))
+        {
+            CardTransaction? transaction = GetCardTransaction(transactionLine, cardFromStatement);
+            // TODO: add transaction category to the model
+            if (transaction is null)
+            {
+                // read category lines ex.:
+                // ";      SUPERMARKET;0,00 TL;0 TL / 0;"
+                // note: 0TL part is just empty data it doesn't mean all SUPERMARKET transactions costed 0 TL
+                transactionCategory = string.Concat(
+                    transactionLine.Split(";")[1].SkipWhile(c => c == ' ')
+                );
+                continue;
+            }
+            transactions.Add(transaction);
+        }
+        await context.cardTransactions.AddRangeAsync(transactions);
+
         await context.SaveChangesAsync();
     }
 
