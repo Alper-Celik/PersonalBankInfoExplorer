@@ -1,37 +1,38 @@
-using Xunit;
-using BankDataDb.Importers;
 using BankDataDb.Entities;
+using BankDataDb.Importers;
+
+using Xunit;
 
 namespace BankDataDb.tests;
 
 public class AkbankCreditCardImporterCsv_Tests
 {
-  [Theory]
-  [InlineData("Some Axes Card", "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
-  [InlineData("Some Other Card", "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
-  public void GetCardName_SholdReturnCorrectData(string expected, string data)
-  {
-
-    string actual = AkbankCreditCardImporterCsv.GetCardName(data);
-
-    Assert.Equal(expected, actual);
-  }
-
-  [Theory]
-  [InlineData(1234, "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
-  [InlineData(4321, "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
-  public void GetCardLast4Digits_SholdReturnCorrectData(short expected, string data)
-  {
-
-    short actual = AkbankCreditCardImporterCsv.GetCardLast4Digits(data);
-
-    Assert.Equal(expected, actual);
-
-  }
-
-  public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
-    new List<object?[]>()
+    [Theory]
+    [InlineData("Some Axes Card", "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
+    [InlineData("Some Other Card", "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
+    public void GetCardName_SholdReturnCorrectData(string expected, string data)
     {
+
+        string actual = AkbankCreditCardImporterCsv.GetCardName(data);
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(1234, "Kart Türü / No:;Some Axes Card / **** **** **** 1234;")]
+    [InlineData(4321, "Kart Türü / No:;Some Other Card / **** **** **** 4321;")]
+    public void GetCardLast4Digits_SholdReturnCorrectData(short expected, string data)
+    {
+
+        short actual = AkbankCreditCardImporterCsv.GetCardLast4Digits(data);
+
+        Assert.Equal(expected, actual);
+
+    }
+
+    public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
+      new List<object?[]>()
+      {
       new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;",null },
 
       new object[] {
@@ -61,24 +62,24 @@ public class AkbankCreditCardImporterCsv_Tests
           Card = null!
         }
       }
-   };
+     };
 
-  [Theory]
-  [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
-  public void GetCardTransaction_ShouldReturnCorrectData(string line, CardTransaction? expected)
-  {
-    CardTransaction? actual = AkbankCreditCardImporterCsv.GetCardTransaction(line, null!);
-
-    if (expected is null)
+    [Theory]
+    [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
+    public void GetCardTransaction_ShouldReturnCorrectData(string line, CardTransaction? expected)
     {
-      Assert.Null(actual);
-      return;
-    }
+        CardTransaction? actual = AkbankCreditCardImporterCsv.GetCardTransaction(line, null!);
 
-    Assert.Equal(expected.TransactionDate, actual!.TransactionDate);
-    Assert.Equal(expected.Comment, actual.Comment);
-    Assert.Equal(expected.AmountInMinorUnit, actual.AmountInMinorUnit);
-    Assert.Equal(expected.CurrencyCode, actual.CurrencyCode);
-    Assert.Equal(expected.CountryAlpha3Code, actual.CountryAlpha3Code);
-  }
+        if (expected is null)
+        {
+            Assert.Null(actual);
+            return;
+        }
+
+        Assert.Equal(expected.TransactionDate, actual!.TransactionDate);
+        Assert.Equal(expected.Comment, actual.Comment);
+        Assert.Equal(expected.AmountInMinorUnit, actual.AmountInMinorUnit);
+        Assert.Equal(expected.CurrencyCode, actual.CurrencyCode);
+        Assert.Equal(expected.CountryAlpha3Code, actual.CountryAlpha3Code);
+    }
 }
