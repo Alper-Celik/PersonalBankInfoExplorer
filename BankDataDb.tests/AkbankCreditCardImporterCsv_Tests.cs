@@ -1,11 +1,39 @@
 using BankDataDb.Entities;
 using BankDataDb.Importers;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankDataDb.tests;
 
 // TODO: add tests for import function with in memory sqlite database
 public class AkbankCreditCardImporterCsv_Tests
 {
+    [Fact]
+    public async Task GetAkbankBankAsync_ShouldCreateNewBankInDb()
+    {
+        var context = new BankDataContext();
+        await context.Database.MigrateAsync();
+        var akbankQuerry = context.Banks.Where(b => b.Name == "Akbank");
+
+        Assert.Null(akbankQuerry.FirstOrDefault());
+        var akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+
+        Assert.Equal(akbank, akbankQuerry.FirstOrDefault());
+    }
+
+    [Fact]
+    public async Task GetAkbankBankAsync_ShouldReturnExistingBank()
+    {
+        var context = new BankDataContext();
+        await context.Database.MigrateAsync();
+        var akbankOrig = new Bank() { Id = 4321, Name = "Akbank" };
+        await context.AddAsync(akbankOrig);
+        await context.SaveChangesAsync();
+
+        var akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+
+        Assert.Equal(akbankOrig, akbank);
+    }
+
     public static IEnumerable<object[]?> GetTransactionLines_ShouldReturnData_Data =>
         new List<object[]?>
         {
@@ -38,7 +66,7 @@ public class AkbankCreditCardImporterCsv_Tests
         IEnumerable<string> expected
     )
     {
-        var actual = AkbankCreditCardImporterCsv.GetTransactionLines(data);
+        var actual = AkbankCreditCardImporterCsv.GetCardTransactionLines(data);
 
         Assert.Equal(expected, actual);
     }

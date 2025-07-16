@@ -39,7 +39,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         }
     }
 
-    public async Task<Bank> GetAkbankBankAsync(BankDataContext context)
+    public static async Task<Bank> GetAkbankBankAsync(BankDataContext context)
     {
         Bank? akbank = context.Banks.FirstOrDefault(b => b.Name == "Akbank");
         if (akbank is null)
@@ -51,7 +51,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return akbank;
     }
 
-    public async Task<Card> GetAkbankCardAsync(
+    public static async Task<Card> GetAkbankCardAsync(
         string cardLine,
         Bank akbank,
         BankDataContext context
@@ -74,7 +74,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return cardFromStatement;
     }
 
-    public List<CardTransaction> GetCardTransactions(
+    public static List<CardTransaction> GetCardTransactions(
         IEnumerable<string> cardTransactionLines,
         Card cardFromStatement,
         BankDataContext context
