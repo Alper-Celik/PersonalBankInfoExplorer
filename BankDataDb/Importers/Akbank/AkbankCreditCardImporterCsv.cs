@@ -1,61 +1,110 @@
 using System.Text;
 using BankDataDb.Entities;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace BankDataDb.Importers;
 
 public class AkbankCreditCardImporterCsv : IBankImporter
 {
-    public async Task Import(BankDataContext context, string filePath)
+    public async Task<(IList<CardTransaction>, IDbContextTransaction)> Import(
+        BankDataContext context,
+        FileInfo filePath
+    )
     {
         IEnumerable<string> data = File.ReadLines(
-            filePath,
-            Encoding.GetEncoding("windows-1254") // windows turkish since akbank seems to encode it in it for some reason
+            filePath.FullName,
+            Encoding.GetEncoding("windows-1254") // windows-turkish since akbank seems to encode it in it for some reason
         );
+        var dbTransaction = await context.Database.BeginTransactionAsync();
 
+        try
+        {
+            var akbank = await GetAkbankBankAsync(context);
+            var cardFromStatement = await GetAkbankCardAsync(data.First(), akbank, context);
+            var cardTransactions = GetCardTransactions(
+                GetCardTransactionLines(data),
+                cardFromStatement,
+                context
+            );
+
+            await context.cardTransactions.AddRangeAsync(cardTransactions);
+            await context.SaveChangesAsync();
+            return (cardTransactions, dbTransaction);
+        }
+        catch (System.Exception)
+        {
+            dbTransaction.Rollback();
+            dbTransaction.Dispose();
+            throw;
+        }
+    }
+
+    public async Task<Bank> GetAkbankBankAsync(BankDataContext context)
+    {
         Bank? akbank = context.Banks.FirstOrDefault(b => b.Name == "Akbank");
         if (akbank is null)
         {
             akbank = new Bank() { Name = "Akbank" };
             await context.Banks.AddAsync(akbank);
+            await context.SaveChangesAsync();
         }
+        return akbank;
+    }
 
-        short cardLast4Digits = GetCardLast4Digits(data.First());
+    public async Task<Card> GetAkbankCardAsync(
+        string cardLine,
+        Bank akbank,
+        BankDataContext context
+    )
+    {
+        short cardLast4Digits = GetCardLast4Digits(cardLine);
         Card? cardFromStatement = context.Cards.FirstOrDefault(c => c.Id == cardLast4Digits);
         if (cardFromStatement is null)
         {
             cardFromStatement = new()
             {
                 Id = cardLast4Digits,
-                Name = GetCardName(data.First()),
+                Name = GetCardName(cardLine),
                 IssuedBank = akbank,
             };
             await context.AddAsync(cardFromStatement);
+            await context.SaveChangesAsync();
         }
 
-        List<CardTransaction> transactions = [];
-        string transactionCategory = "";
-        foreach (var transactionLine in GetTransactionLines(data))
+        return cardFromStatement;
+    }
+
+    public List<CardTransaction> GetCardTransactions(
+        IEnumerable<string> cardTransactionLines,
+        Card cardFromStatement,
+        BankDataContext context
+    )
+    {
+        List<CardTransaction> cardTransactions = [];
+        string cardTransactionCategory = "";
+        foreach (var cardTransactionLine in cardTransactionLines)
         {
-            CardTransaction? transaction = GetCardTransaction(transactionLine, cardFromStatement);
+            CardTransaction? transaction = GetCardTransaction(
+                cardTransactionLine,
+                cardFromStatement
+            );
             // TODO: add transaction category to the model
             if (transaction is null)
             {
                 // read category lines ex.:
                 // ";      SUPERMARKET;0,00 TL;0 TL / 0;"
                 // note: 0TL part is just empty data it doesn't mean all SUPERMARKET transactions costed 0 TL
-                transactionCategory = string.Concat(
-                    transactionLine.Split(";")[1].SkipWhile(c => c == ' ')
+                cardTransactionCategory = string.Concat(
+                    cardTransactionLine.Split(";")[1].SkipWhile(c => c == ' ')
                 );
                 continue;
             }
-            transactions.Add(transaction);
+            cardTransactions.Add(transaction);
         }
-        await context.cardTransactions.AddRangeAsync(transactions);
-
-        await context.SaveChangesAsync();
+        return cardTransactions;
     }
 
-    public static IEnumerable<string> GetTransactionLines(IEnumerable<string> lines) =>
+    public static IEnumerable<string> GetCardTransactionLines(IEnumerable<string> lines) =>
         lines
             .SkipWhile(l => !l.StartsWith("Tarih"))
             .Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
