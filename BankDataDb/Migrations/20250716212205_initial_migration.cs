@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,16 +17,14 @@ namespace BankDataDb.Migrations
                 name: "Banks",
                 columns: table => new
                 {
-                    Id = table
-                        .Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Banks", x => x.Id);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "Countries",
@@ -34,38 +33,36 @@ namespace BankDataDb.Migrations
                     Alpha3Code = table.Column<string>(type: "TEXT", nullable: false),
                     Alpha2Code = table.Column<string>(type: "TEXT", nullable: false),
                     NumericCode = table.Column<short>(type: "INTEGER", nullable: false),
-                    EnglishName = table.Column<string>(type: "TEXT", nullable: false),
+                    EnglishName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Alpha3Code);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "Currencies",
                 columns: table => new
                 {
                     CurrencyCode = table.Column<string>(type: "char(3)", nullable: false),
+                    Symbol = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    MinorUnitFractions = table.Column<byte>(type: "INTEGER", nullable: false),
+                    MinorUnitFractions = table.Column<byte>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Currencies", x => x.CurrencyCode);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "Cards",
                 columns: table => new
                 {
-                    Id = table
-                        .Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     CardType = table.Column<int>(type: "varchar(50)", nullable: false),
-                    BankId = table.Column<int>(type: "INTEGER", nullable: false),
+                    BankId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,42 +72,44 @@ namespace BankDataDb.Migrations
                         column: x => x.BankId,
                         principalTable: "Banks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "CardTransactions",
                 columns: table => new
                 {
-                    Id = table
-                        .Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TransactionDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     TransactionTime = table.Column<TimeOnly>(type: "TEXT", nullable: true),
                     AmountInMinorUnit = table.Column<long>(type: "INTEGER", nullable: false),
+                    Comment = table.Column<string>(type: "TEXT", nullable: false),
                     CurrencyCode = table.Column<string>(type: "char(3)", nullable: false),
                     CountryAlpha3Code = table.Column<string>(type: "TEXT", nullable: true),
+                    CardId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CardTransactions", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_CardTransactions_Cards_CardId",
+                        column: x => x.CardId,
+                        principalTable: "Cards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_CardTransactions_Countries_CountryAlpha3Code",
                         column: x => x.CountryAlpha3Code,
                         principalTable: "Countries",
-                        principalColumn: "Alpha3Code"
-                    );
+                        principalColumn: "Alpha3Code");
                     table.ForeignKey(
                         name: "FK_CardTransactions_Currencies_CurrencyCode",
                         column: x => x.CurrencyCode,
                         principalTable: "Currencies",
                         principalColumn: "CurrencyCode",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "Countries",
@@ -178,12 +177,7 @@ namespace BankDataDb.Migrations
                     { "FRA", "FR", "France", (short)250 },
                     { "FSM", "FM", "Micronesia, Federated States of", (short)583 },
                     { "GAB", "GA", "Gabon", (short)266 },
-                    {
-                        "GBR",
-                        "GB",
-                        "United Kingdom of Great Britain and Northern Ireland",
-                        (short)826,
-                    },
+                    { "GBR", "GB", "United Kingdom of Great Britain and Northern Ireland", (short)826 },
                     { "GEO", "GE", "Georgia", (short)268 },
                     { "GHA", "GH", "Ghana", (short)288 },
                     { "GIN", "GN", "Guinea", (short)324 },
@@ -314,192 +308,203 @@ namespace BankDataDb.Migrations
                     { "YEM", "YE", "Yemen", (short)887 },
                     { "ZAF", "ZA", "South Africa", (short)710 },
                     { "ZMB", "ZM", "Zambia", (short)894 },
-                    { "ZWE", "ZW", "Zimbabwe", (short)716 },
-                }
-            );
+                    { "ZWE", "ZW", "Zimbabwe", (short)716 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Currencies",
-                columns: new[] { "CurrencyCode", "MinorUnitFractions", "Name" },
+                columns: new[] { "CurrencyCode", "MinorUnitFractions", "Name", "Symbol" },
                 values: new object[,]
                 {
-                    { "AED", (byte)2, "United Arab Emirates Dirham" },
-                    { "AFN", (byte)0, "Afghan Afghani" },
-                    { "ALL", (byte)0, "Albanian Lek" },
-                    { "AMD", (byte)0, "Armenian Dram" },
-                    { "ARS", (byte)2, "Argentine Peso" },
-                    { "AUD", (byte)2, "Australian Dollar" },
-                    { "AZN", (byte)2, "Azerbaijani Manat" },
-                    { "BAM", (byte)2, "Bosnia-Herzegovina Convertible Mark" },
-                    { "BDT", (byte)2, "Bangladeshi Taka" },
-                    { "BGN", (byte)2, "Bulgarian Lev" },
-                    { "BHD", (byte)3, "Bahraini Dinar" },
-                    { "BIF", (byte)0, "Burundian Franc" },
-                    { "BND", (byte)2, "Brunei Dollar" },
-                    { "BOB", (byte)2, "Bolivian Boliviano" },
-                    { "BRL", (byte)2, "Brazilian Real" },
-                    { "BWP", (byte)2, "Botswanan Pula" },
-                    { "BYN", (byte)2, "Belarusian Ruble" },
-                    { "BZD", (byte)2, "Belize Dollar" },
-                    { "CAD", (byte)2, "Canadian Dollar" },
-                    { "CDF", (byte)2, "Congolese Franc" },
-                    { "CHF", (byte)2, "Swiss Franc" },
-                    { "CLP", (byte)0, "Chilean Peso" },
-                    { "CNY", (byte)2, "Chinese Yuan" },
-                    { "COP", (byte)0, "Colombian Peso" },
-                    { "CRC", (byte)0, "Costa Rican Colón" },
-                    { "CVE", (byte)2, "Cape Verdean Escudo" },
-                    { "CZK", (byte)2, "Czech Republic Koruna" },
-                    { "DJF", (byte)0, "Djiboutian Franc" },
-                    { "DKK", (byte)2, "Danish Krone" },
-                    { "DOP", (byte)2, "Dominican Peso" },
-                    { "DZD", (byte)2, "Algerian Dinar" },
-                    { "EEK", (byte)2, "Estonian Kroon" },
-                    { "EGP", (byte)2, "Egyptian Pound" },
-                    { "ERN", (byte)2, "Eritrean Nakfa" },
-                    { "ETB", (byte)2, "Ethiopian Birr" },
-                    { "EUR", (byte)2, "Euro" },
-                    { "GBP", (byte)2, "British Pound Sterling" },
-                    { "GEL", (byte)2, "Georgian Lari" },
-                    { "GHS", (byte)2, "Ghanaian Cedi" },
-                    { "GNF", (byte)0, "Guinean Franc" },
-                    { "GTQ", (byte)2, "Guatemalan Quetzal" },
-                    { "HKD", (byte)2, "Hong Kong Dollar" },
-                    { "HNL", (byte)2, "Honduran Lempira" },
-                    { "HRK", (byte)2, "Croatian Kuna" },
-                    { "HUF", (byte)0, "Hungarian Forint" },
-                    { "IDR", (byte)0, "Indonesian Rupiah" },
-                    { "ILS", (byte)2, "Israeli New Sheqel" },
-                    { "INR", (byte)2, "Indian Rupee" },
-                    { "IQD", (byte)0, "Iraqi Dinar" },
-                    { "IRR", (byte)0, "Iranian Rial" },
-                    { "ISK", (byte)0, "Icelandic Króna" },
-                    { "JMD", (byte)2, "Jamaican Dollar" },
-                    { "JOD", (byte)3, "Jordanian Dinar" },
-                    { "JPY", (byte)0, "Japanese Yen" },
-                    { "KES", (byte)2, "Kenyan Shilling" },
-                    { "KHR", (byte)2, "Cambodian Riel" },
-                    { "KMF", (byte)0, "Comorian Franc" },
-                    { "KRW", (byte)0, "South Korean Won" },
-                    { "KWD", (byte)3, "Kuwaiti Dinar" },
-                    { "KZT", (byte)2, "Kazakhstani Tenge" },
-                    { "LBP", (byte)0, "Lebanese Pound" },
-                    { "LKR", (byte)2, "Sri Lankan Rupee" },
-                    { "LTL", (byte)2, "Lithuanian Litas" },
-                    { "LVL", (byte)2, "Latvian Lats" },
-                    { "LYD", (byte)3, "Libyan Dinar" },
-                    { "MAD", (byte)2, "Moroccan Dirham" },
-                    { "MDL", (byte)2, "Moldovan Leu" },
-                    { "MGA", (byte)0, "Malagasy Ariary" },
-                    { "MKD", (byte)2, "Macedonian Denar" },
-                    { "MMK", (byte)0, "Myanma Kyat" },
-                    { "MOP", (byte)2, "Macanese Pataca" },
-                    { "MUR", (byte)0, "Mauritian Rupee" },
-                    { "MXN", (byte)2, "Mexican Peso" },
-                    { "MYR", (byte)2, "Malaysian Ringgit" },
-                    { "MZN", (byte)2, "Mozambican Metical" },
-                    { "NAD", (byte)2, "Namibian Dollar" },
-                    { "NGN", (byte)2, "Nigerian Naira" },
-                    { "NIO", (byte)2, "Nicaraguan Córdoba" },
-                    { "NOK", (byte)2, "Norwegian Krone" },
-                    { "NPR", (byte)2, "Nepalese Rupee" },
-                    { "NZD", (byte)2, "New Zealand Dollar" },
-                    { "OMR", (byte)3, "Omani Rial" },
-                    { "PAB", (byte)2, "Panamanian Balboa" },
-                    { "PEN", (byte)2, "Peruvian Nuevo Sol" },
-                    { "PHP", (byte)2, "Philippine Peso" },
-                    { "PKR", (byte)0, "Pakistani Rupee" },
-                    { "PLN", (byte)2, "Polish Zloty" },
-                    { "PYG", (byte)0, "Paraguayan Guarani" },
-                    { "QAR", (byte)2, "Qatari Rial" },
-                    { "RON", (byte)2, "Romanian Leu" },
-                    { "RSD", (byte)0, "Serbian Dinar" },
-                    { "RUB", (byte)2, "Russian Ruble" },
-                    { "RWF", (byte)0, "Rwandan Franc" },
-                    { "SAR", (byte)2, "Saudi Riyal" },
-                    { "SDG", (byte)2, "Sudanese Pound" },
-                    { "SEK", (byte)2, "Swedish Krona" },
-                    { "SGD", (byte)2, "Singapore Dollar" },
-                    { "SOS", (byte)0, "Somali Shilling" },
-                    { "SYP", (byte)0, "Syrian Pound" },
-                    { "THB", (byte)2, "Thai Baht" },
-                    { "TND", (byte)3, "Tunisian Dinar" },
-                    { "TOP", (byte)2, "Tongan Paʻanga" },
-                    { "TRY", (byte)2, "Turkish Lira" },
-                    { "TTD", (byte)2, "Trinidad and Tobago Dollar" },
-                    { "TWD", (byte)2, "New Taiwan Dollar" },
-                    { "TZS", (byte)0, "Tanzanian Shilling" },
-                    { "UAH", (byte)2, "Ukrainian Hryvnia" },
-                    { "UGX", (byte)0, "Ugandan Shilling" },
-                    { "USD", (byte)2, "US Dollar" },
-                    { "UYU", (byte)2, "Uruguayan Peso" },
-                    { "UZS", (byte)0, "Uzbekistan Som" },
-                    { "VEF", (byte)2, "Venezuelan Bolívar" },
-                    { "VND", (byte)0, "Vietnamese Dong" },
-                    { "XAF", (byte)0, "CFA Franc BEAC" },
-                    { "XOF", (byte)0, "CFA Franc BCEAO" },
-                    { "YER", (byte)0, "Yemeni Rial" },
-                    { "ZAR", (byte)2, "South African Rand" },
-                    { "ZMK", (byte)0, "Zambian Kwacha" },
-                    { "ZWL", (byte)0, "Zimbabwean Dollar" },
-                }
-            );
+                    { "AED", (byte)2, "United Arab Emirates Dirham", "AED" },
+                    { "AFN", (byte)0, "Afghan Afghani", "Af" },
+                    { "ALL", (byte)0, "Albanian Lek", "ALL" },
+                    { "AMD", (byte)0, "Armenian Dram", "AMD" },
+                    { "ARS", (byte)2, "Argentine Peso", "AR$" },
+                    { "AUD", (byte)2, "Australian Dollar", "AU$" },
+                    { "AZN", (byte)2, "Azerbaijani Manat", "man." },
+                    { "BAM", (byte)2, "Bosnia-Herzegovina Convertible Mark", "KM" },
+                    { "BDT", (byte)2, "Bangladeshi Taka", "Tk" },
+                    { "BGN", (byte)2, "Bulgarian Lev", "BGN" },
+                    { "BHD", (byte)3, "Bahraini Dinar", "BD" },
+                    { "BIF", (byte)0, "Burundian Franc", "FBu" },
+                    { "BND", (byte)2, "Brunei Dollar", "BN$" },
+                    { "BOB", (byte)2, "Bolivian Boliviano", "Bs" },
+                    { "BRL", (byte)2, "Brazilian Real", "R$" },
+                    { "BWP", (byte)2, "Botswanan Pula", "BWP" },
+                    { "BYN", (byte)2, "Belarusian Ruble", "Br" },
+                    { "BZD", (byte)2, "Belize Dollar", "BZ$" },
+                    { "CAD", (byte)2, "Canadian Dollar", "CA$" },
+                    { "CDF", (byte)2, "Congolese Franc", "CDF" },
+                    { "CHF", (byte)2, "Swiss Franc", "CHF" },
+                    { "CLP", (byte)0, "Chilean Peso", "CL$" },
+                    { "CNY", (byte)2, "Chinese Yuan", "CN¥" },
+                    { "COP", (byte)0, "Colombian Peso", "CO$" },
+                    { "CRC", (byte)0, "Costa Rican Colón", "₡" },
+                    { "CVE", (byte)2, "Cape Verdean Escudo", "CV$" },
+                    { "CZK", (byte)2, "Czech Republic Koruna", "Kč" },
+                    { "DJF", (byte)0, "Djiboutian Franc", "Fdj" },
+                    { "DKK", (byte)2, "Danish Krone", "Dkr" },
+                    { "DOP", (byte)2, "Dominican Peso", "RD$" },
+                    { "DZD", (byte)2, "Algerian Dinar", "DA" },
+                    { "EEK", (byte)2, "Estonian Kroon", "Ekr" },
+                    { "EGP", (byte)2, "Egyptian Pound", "EGP" },
+                    { "ERN", (byte)2, "Eritrean Nakfa", "Nfk" },
+                    { "ETB", (byte)2, "Ethiopian Birr", "Br" },
+                    { "EUR", (byte)2, "Euro", "€" },
+                    { "GBP", (byte)2, "British Pound Sterling", "£" },
+                    { "GEL", (byte)2, "Georgian Lari", "GEL" },
+                    { "GHS", (byte)2, "Ghanaian Cedi", "GH₵" },
+                    { "GNF", (byte)0, "Guinean Franc", "FG" },
+                    { "GTQ", (byte)2, "Guatemalan Quetzal", "GTQ" },
+                    { "HKD", (byte)2, "Hong Kong Dollar", "HK$" },
+                    { "HNL", (byte)2, "Honduran Lempira", "HNL" },
+                    { "HRK", (byte)2, "Croatian Kuna", "kn" },
+                    { "HUF", (byte)0, "Hungarian Forint", "Ft" },
+                    { "IDR", (byte)0, "Indonesian Rupiah", "Rp" },
+                    { "ILS", (byte)2, "Israeli New Sheqel", "₪" },
+                    { "INR", (byte)2, "Indian Rupee", "Rs" },
+                    { "IQD", (byte)0, "Iraqi Dinar", "IQD" },
+                    { "IRR", (byte)0, "Iranian Rial", "IRR" },
+                    { "ISK", (byte)0, "Icelandic Króna", "Ikr" },
+                    { "JMD", (byte)2, "Jamaican Dollar", "J$" },
+                    { "JOD", (byte)3, "Jordanian Dinar", "JD" },
+                    { "JPY", (byte)0, "Japanese Yen", "¥" },
+                    { "KES", (byte)2, "Kenyan Shilling", "Ksh" },
+                    { "KHR", (byte)2, "Cambodian Riel", "KHR" },
+                    { "KMF", (byte)0, "Comorian Franc", "CF" },
+                    { "KRW", (byte)0, "South Korean Won", "₩" },
+                    { "KWD", (byte)3, "Kuwaiti Dinar", "KD" },
+                    { "KZT", (byte)2, "Kazakhstani Tenge", "KZT" },
+                    { "LBP", (byte)0, "Lebanese Pound", "L.L." },
+                    { "LKR", (byte)2, "Sri Lankan Rupee", "SLRs" },
+                    { "LTL", (byte)2, "Lithuanian Litas", "Lt" },
+                    { "LVL", (byte)2, "Latvian Lats", "Ls" },
+                    { "LYD", (byte)3, "Libyan Dinar", "LD" },
+                    { "MAD", (byte)2, "Moroccan Dirham", "MAD" },
+                    { "MDL", (byte)2, "Moldovan Leu", "MDL" },
+                    { "MGA", (byte)0, "Malagasy Ariary", "MGA" },
+                    { "MKD", (byte)2, "Macedonian Denar", "MKD" },
+                    { "MMK", (byte)0, "Myanma Kyat", "MMK" },
+                    { "MOP", (byte)2, "Macanese Pataca", "MOP$" },
+                    { "MUR", (byte)0, "Mauritian Rupee", "MURs" },
+                    { "MXN", (byte)2, "Mexican Peso", "MX$" },
+                    { "MYR", (byte)2, "Malaysian Ringgit", "RM" },
+                    { "MZN", (byte)2, "Mozambican Metical", "MTn" },
+                    { "NAD", (byte)2, "Namibian Dollar", "N$" },
+                    { "NGN", (byte)2, "Nigerian Naira", "₦" },
+                    { "NIO", (byte)2, "Nicaraguan Córdoba", "C$" },
+                    { "NOK", (byte)2, "Norwegian Krone", "Nkr" },
+                    { "NPR", (byte)2, "Nepalese Rupee", "NPRs" },
+                    { "NZD", (byte)2, "New Zealand Dollar", "NZ$" },
+                    { "OMR", (byte)3, "Omani Rial", "OMR" },
+                    { "PAB", (byte)2, "Panamanian Balboa", "B/." },
+                    { "PEN", (byte)2, "Peruvian Nuevo Sol", "S/." },
+                    { "PHP", (byte)2, "Philippine Peso", "₱" },
+                    { "PKR", (byte)0, "Pakistani Rupee", "PKRs" },
+                    { "PLN", (byte)2, "Polish Zloty", "zł" },
+                    { "PYG", (byte)0, "Paraguayan Guarani", "₲" },
+                    { "QAR", (byte)2, "Qatari Rial", "QR" },
+                    { "RON", (byte)2, "Romanian Leu", "RON" },
+                    { "RSD", (byte)0, "Serbian Dinar", "din." },
+                    { "RUB", (byte)2, "Russian Ruble", "RUB" },
+                    { "RWF", (byte)0, "Rwandan Franc", "RWF" },
+                    { "SAR", (byte)2, "Saudi Riyal", "SR" },
+                    { "SDG", (byte)2, "Sudanese Pound", "SDG" },
+                    { "SEK", (byte)2, "Swedish Krona", "Skr" },
+                    { "SGD", (byte)2, "Singapore Dollar", "S$" },
+                    { "SOS", (byte)0, "Somali Shilling", "Ssh" },
+                    { "SYP", (byte)0, "Syrian Pound", "SY£" },
+                    { "THB", (byte)2, "Thai Baht", "฿" },
+                    { "TND", (byte)3, "Tunisian Dinar", "DT" },
+                    { "TOP", (byte)2, "Tongan Paʻanga", "T$" },
+                    { "TRY", (byte)2, "Turkish Lira", "TL" },
+                    { "TTD", (byte)2, "Trinidad and Tobago Dollar", "TT$" },
+                    { "TWD", (byte)2, "New Taiwan Dollar", "NT$" },
+                    { "TZS", (byte)0, "Tanzanian Shilling", "TSh" },
+                    { "UAH", (byte)2, "Ukrainian Hryvnia", "₴" },
+                    { "UGX", (byte)0, "Ugandan Shilling", "USh" },
+                    { "USD", (byte)2, "US Dollar", "$" },
+                    { "UYU", (byte)2, "Uruguayan Peso", "$U" },
+                    { "UZS", (byte)0, "Uzbekistan Som", "UZS" },
+                    { "VEF", (byte)2, "Venezuelan Bolívar", "Bs.F." },
+                    { "VND", (byte)0, "Vietnamese Dong", "₫" },
+                    { "XAF", (byte)0, "CFA Franc BEAC", "FCFA" },
+                    { "XOF", (byte)0, "CFA Franc BCEAO", "CFA" },
+                    { "YER", (byte)0, "Yemeni Rial", "YR" },
+                    { "ZAR", (byte)2, "South African Rand", "R" },
+                    { "ZMK", (byte)0, "Zambian Kwacha", "ZK" },
+                    { "ZWL", (byte)0, "Zimbabwean Dollar", "ZWL$" }
+                });
 
-            migrationBuilder.CreateIndex(name: "IX_Cards_BankId", table: "Cards", column: "BankId");
+            migrationBuilder.CreateIndex(
+                name: "IX_Banks_Name",
+                table: "Banks",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cards_BankId",
+                table: "Cards",
+                column: "BankId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardTransactions_CardId",
+                table: "CardTransactions",
+                column: "CardId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CardTransactions_CountryAlpha3Code",
                 table: "CardTransactions",
-                column: "CountryAlpha3Code"
-            );
+                column: "CountryAlpha3Code");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CardTransactions_CurrencyCode",
                 table: "CardTransactions",
-                column: "CurrencyCode"
-            );
+                column: "CurrencyCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_Alpha2Code",
                 table: "Countries",
                 column: "Alpha2Code",
-                unique: true
-            );
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_Alpha3Code",
                 table: "Countries",
                 column: "Alpha3Code",
-                unique: true
-            );
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Countries_NumericCode",
                 table: "Countries",
                 column: "NumericCode",
-                unique: true
-            );
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Currencies_CurrencyCode",
                 table: "Currencies",
                 column: "CurrencyCode",
-                unique: true
-            );
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "Cards");
+            migrationBuilder.DropTable(
+                name: "CardTransactions");
 
-            migrationBuilder.DropTable(name: "CardTransactions");
+            migrationBuilder.DropTable(
+                name: "Cards");
 
-            migrationBuilder.DropTable(name: "Banks");
+            migrationBuilder.DropTable(
+                name: "Countries");
 
-            migrationBuilder.DropTable(name: "Countries");
+            migrationBuilder.DropTable(
+                name: "Currencies");
 
-            migrationBuilder.DropTable(name: "Currencies");
+            migrationBuilder.DropTable(
+                name: "Banks");
         }
     }
 }

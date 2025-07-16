@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankDataDb.Migrations
 {
     [DbContext(typeof(BankDataContext))]
-    [Migration("20250714200037_unique_index_to_Banks")]
-    partial class unique_index_to_Banks
+    [Migration("20250716212205_initial_migration")]
+    partial class initial_migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
