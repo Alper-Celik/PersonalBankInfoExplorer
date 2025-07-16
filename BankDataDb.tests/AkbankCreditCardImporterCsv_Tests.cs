@@ -8,6 +8,49 @@ namespace BankDataDb.tests;
 public class AkbankCreditCardImporterCsv_Tests
 {
     [Fact]
+    public async Task GetAkbankCardAsync_ShouldReturnExistingCard()
+    {
+        var context = new BankDataContext();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
+        string cardLine = "Kart Türü / No:;Akbank Card / **** **** **** 1234";
+        var bank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+        var card = new Card()
+        {
+            IssuedBank = bank,
+            Id = AkbankCreditCardImporterCsv.GetCardLast4Digits(cardLine),
+            Name = AkbankCreditCardImporterCsv.GetCardName(cardLine),
+        };
+        await context.Cards.AddAsync(card);
+        await context.SaveChangesAsync();
+
+        var queryCard = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
+            cardLine,
+            await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context),
+            context
+        );
+
+        Assert.Equal(card, queryCard);
+    }
+
+    [Fact]
+    public async Task GetAkbankCardAsync_ShouldCreateNewCardInDb()
+    {
+        var context = new BankDataContext();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
+        string cardLine = "Kart Türü / No:;Akbank Card / **** **** **** 1234";
+        var cardQuerry = context.Cards.Where(c => c.Id == 1234);
+
+        Assert.Null(cardQuerry.FirstOrDefault());
+        var card = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
+            cardLine,
+            await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context),
+            context
+        );
+
+        Assert.Equal(card, cardQuerry.FirstOrDefault());
+    }
+
+    [Fact]
     public async Task GetAkbankBankAsync_ShouldCreateNewBankInDb()
     {
         var context = new BankDataContext();
