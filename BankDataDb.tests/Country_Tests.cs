@@ -34,9 +34,11 @@ public class Country_Tests
     {
         var context = new BankDataContext();
 
-        await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
-        Country country = await context.Countries.Where(c => c.Alpha3Code == alpha3).SingleAsync();
+        Country country = await context
+            .Countries.Where(c => c.Alpha3Code == alpha3)
+            .SingleAsync(TestContext.Current.CancellationToken);
         Assert.Equal(alpha2, country.Alpha2Code);
         Assert.Equal(alpha3, country.Alpha3Code);
         Assert.Equal(name, country.EnglishName);

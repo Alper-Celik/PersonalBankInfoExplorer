@@ -11,7 +11,7 @@ public class AkbankCreditCardImporterCsv_Tests
     public async Task GetAkbankBankAsync_ShouldCreateNewBankInDb()
     {
         var context = new BankDataContext();
-        await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
         var akbankQuerry = context.Banks.Where(b => b.Name == "Akbank");
 
         Assert.Null(akbankQuerry.FirstOrDefault());
@@ -24,10 +24,10 @@ public class AkbankCreditCardImporterCsv_Tests
     public async Task GetAkbankBankAsync_ShouldReturnExistingBank()
     {
         var context = new BankDataContext();
-        await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
         var akbankOrig = new Bank() { Id = 4321, Name = "Akbank" };
-        await context.AddAsync(akbankOrig);
-        await context.SaveChangesAsync();
+        await context.AddAsync(akbankOrig, TestContext.Current.CancellationToken);
+        await context.SaveChangesAsync(TestContext.Current.CancellationToken);
 
         var akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
 

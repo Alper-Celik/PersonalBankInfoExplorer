@@ -18,11 +18,11 @@ public class Currency_Tests
     {
         var context = new BankDataContext();
 
-        await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
         Currency currency = await context
             .Currencies.Where(c => c.CurrencyCode == code)
-            .SingleAsync();
+            .SingleAsync(TestContext.Current.CancellationToken);
         Assert.Equal(code, currency.CurrencyCode);
         Assert.Equal(name, currency.Name);
         Assert.Equal(MinorUnitFractions, currency.MinorUnitFractions);
