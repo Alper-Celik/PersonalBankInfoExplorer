@@ -49,6 +49,7 @@ public class BankDataContext : DbContext
         {
             optionsBuilder.UseSqlite(connection);
         }
+        optionsBuilder.LogTo(Console.WriteLine);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
