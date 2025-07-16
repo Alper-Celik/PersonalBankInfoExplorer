@@ -21,8 +21,8 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         {
             var akbank = await GetAkbankBankAsync(context);
             var cardFromStatement = await GetAkbankCardAsync(data.First(), akbank, context);
-            var cardTransactions = GetCardTransactions(
-                GetCardTransactionLines(data),
+            var cardTransactions = GetCardTransactions( // TODO: add duplicate item prevantion in case of
+                GetCardTransactionLines(data), //               importing current months statement multiple times
                 cardFromStatement,
                 context
             );
