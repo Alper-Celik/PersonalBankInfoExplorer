@@ -449,3 +449,8 @@ dotnet_diagnostic.SA1516.severity = none
 dotnet_diagnostic.SA1127.severity = none
 dotnet_diagnostic.SA1128.severity = none
 
+# Projects own config
+[*.cs]
+
+# nullablelity is off
+dotnet_diagnostic.CA1062.severity = none

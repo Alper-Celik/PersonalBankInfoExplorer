@@ -3,9 +3,10 @@ using System.Text;
 using BankDataDb.Entities;
 using Microsoft.EntityFrameworkCore.Storage;
 
-#pragma warning disable IDE0130 // it is in folder to put it in same place as seed data and config
-namespace BankDataDb.Importers;
+namespace BankDataDb.Importers.Akbank;
 
+// we want to avoid contuning in another thread since DbContext is not thread safe
+#pragma warning disable CA2007
 public class AkbankCreditCardImporterCsv : IBankImporter
 {
     public async Task<(IList<CardTransaction>, IDbContextTransaction)> Import(
@@ -13,17 +14,19 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         FileInfo filePath
     )
     {
+#pragma warning disable CA1849 //  File.ReadLinesAsync returns AsyncIEnumerable which requires to change everywhere it touches it isn't worth the hassle
         IEnumerable<string> data = File.ReadLines(
             filePath.FullName,
             Encoding.GetEncoding("windows-1254") // windows-turkish since akbank seems to encode it in it for some reason
         );
+#pragma warning restore CA1849
         IDbContextTransaction dbTransaction = await context.Database.BeginTransactionAsync();
 
         try
         {
             Bank akbank = await GetAkbankBankAsync(context);
             Card cardFromStatement = await GetAkbankCardAsync(data.First(), akbank, context);
-            List<CardTransaction> cardTransactions = GetCardTransactions( // TODO: add duplicate item prevantion in case of
+            IList<CardTransaction> cardTransactions = GetCardTransactions( // TODO: add duplicate item prevantion in case of
                 GetCardTransactionLines(data), //               importing current months statement multiple times
                 cardFromStatement
             );
@@ -34,7 +37,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         }
         catch (Exception)
         {
-            dbTransaction.Rollback();
+            await dbTransaction.RollbackAsync();
             dbTransaction.Dispose();
             throw;
         }
@@ -75,7 +78,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return cardFromStatement;
     }
 
-    public static List<CardTransaction> GetCardTransactions(
+    public static IList<CardTransaction> GetCardTransactions(
         IEnumerable<string> cardTransactionLines,
         Card cardFromStatement
     )
@@ -109,7 +112,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return lines
             .SkipWhile(static l => !l.StartsWith("Tarih", false, CultureInfo.InvariantCulture))
             .Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
-            .TakeWhile(static l => l.Contains(';')); // last lines doesn't contain semicolons
+            .TakeWhile(static l => l.Contains(';', StringComparison.InvariantCulture)); // last lines doesn't contain semicolons
     }
 
     // parses transaction info csv line and returns CardTransaction
@@ -123,7 +126,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     {
         string[] columns = line.Split(";");
 
-        if (columns[0] == string.Empty)
+        if (string.IsNullOrEmpty(columns[0]))
         {
             return null;
         }

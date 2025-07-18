@@ -1,5 +1,5 @@
 using BankDataDb.Entities;
-using BankDataDb.Importers;
+using BankDataDb.Importers.Akbank;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankDataDb.Tests;

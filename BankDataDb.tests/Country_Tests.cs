@@ -1,7 +1,7 @@
 using BankDataDb.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankDataDb.Tests;:
+namespace BankDataDb.Tests;
 
 public class Country_Tests
 {

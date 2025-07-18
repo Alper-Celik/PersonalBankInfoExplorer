@@ -39,7 +39,7 @@ public class Currency
         );
     }
 
-    public static List<Currency> GetCurrencies()
+    public static IList<Currency> GetCurrencies()
     {
         string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
         string jsonPath = Path.Combine(assemblyPath, "SeedData", "Common-Currency.seed.json"); //from gist.githubusercontent.com/ksafranski/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json
