@@ -2,7 +2,7 @@ using BankDataDb.Entities;
 using BankDataDb.Importers;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankDataDb.tests;
+namespace BankDataDb.Tests;
 
 // TODO: add tests for import function with in memory sqlite database
 public class AkbankCreditCardImporterCsv_Tests
@@ -10,20 +10,20 @@ public class AkbankCreditCardImporterCsv_Tests
     [Fact]
     public async Task GetAkbankCardAsync_ShouldReturnExistingCard()
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
         string cardLine = "Kart Türü / No:;Akbank Card / **** **** **** 1234";
-        var bank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
-        var card = new Card()
+        Bank bank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+        Card card = new()
         {
             IssuedBank = bank,
             Id = AkbankCreditCardImporterCsv.GetCardLast4Digits(cardLine),
             Name = AkbankCreditCardImporterCsv.GetCardName(cardLine),
         };
-        await context.Cards.AddAsync(card);
-        await context.SaveChangesAsync();
+        _ = await context.Cards.AddAsync(card, TestContext.Current.CancellationToken);
+        _ = await context.SaveChangesAsync(TestContext.Current.CancellationToken);
 
-        var queryCard = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
+        Card queryCard = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
             cardLine,
             await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context),
             context
@@ -35,13 +35,13 @@ public class AkbankCreditCardImporterCsv_Tests
     [Fact]
     public async Task GetAkbankCardAsync_ShouldCreateNewCardInDb()
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
         string cardLine = "Kart Türü / No:;Akbank Card / **** **** **** 1234";
-        var cardQuerry = context.Cards.Where(c => c.Id == 1234);
+        IQueryable<Card> cardQuerry = context.Cards.Where(static c => c.Id == 1234);
 
         Assert.Null(cardQuerry.FirstOrDefault());
-        var card = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
+        Card card = await AkbankCreditCardImporterCsv.GetAkbankCardAsync(
             cardLine,
             await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context),
             context
@@ -53,12 +53,12 @@ public class AkbankCreditCardImporterCsv_Tests
     [Fact]
     public async Task GetAkbankBankAsync_ShouldCreateNewBankInDb()
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
-        var akbankQuerry = context.Banks.Where(b => b.Name == "Akbank");
+        IQueryable<Bank> akbankQuerry = context.Banks.Where(static b => b.Name == "Akbank");
 
         Assert.Null(akbankQuerry.FirstOrDefault());
-        var akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+        Bank akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
 
         Assert.Equal(akbank, akbankQuerry.FirstOrDefault());
     }
@@ -66,24 +66,23 @@ public class AkbankCreditCardImporterCsv_Tests
     [Fact]
     public async Task GetAkbankBankAsync_ShouldReturnExistingBank()
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
-        var akbankOrig = new Bank() { Id = 4321, Name = "Akbank" };
-        await context.AddAsync(akbankOrig, TestContext.Current.CancellationToken);
-        await context.SaveChangesAsync(TestContext.Current.CancellationToken);
+        Bank akbankOrig = new() { Id = 4321, Name = "Akbank" };
+        _ = await context.AddAsync(akbankOrig, TestContext.Current.CancellationToken);
+        _ = await context.SaveChangesAsync(TestContext.Current.CancellationToken);
 
-        var akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
+        Bank akbank = await AkbankCreditCardImporterCsv.GetAkbankBankAsync(context);
 
         Assert.Equal(akbankOrig, akbank);
     }
 
-    public static IEnumerable<object[]?> GetTransactionLines_ShouldReturnData_Data =>
-        new List<object[]?>
-        {
-            new object[]
-            {
-                new List<string>
-                {
+    public static IEnumerable<
+        TheoryDataRow<string[], string[]>
+    > GetTransactionLines_ShouldReturnData_Data =>
+        [
+            new(
+                [
                     "some line;",
                     "some other line ; test;",
                     "Tarih;Açıklama;Tutar;Chip Para / Mil;",
@@ -92,15 +91,14 @@ public class AkbankCreditCardImporterCsv_Tests
                     "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
                     "",
                     "Akbank T.A.Ş.",
-                },
-                new List<string>
-                {
+                ],
+                [
                     "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
                     "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
                     "Redacted.Redacted.2025;Redacted;-1.500,00 TL;0 TL / 0;",
-                },
-            },
-        };
+                ]
+            ),
+        ];
 
     [Theory]
     [MemberData(nameof(GetTransactionLines_ShouldReturnData_Data))]
@@ -109,17 +107,17 @@ public class AkbankCreditCardImporterCsv_Tests
         IEnumerable<string> expected
     )
     {
-        var actual = AkbankCreditCardImporterCsv.GetCardTransactionLines(data);
+        IEnumerable<string> actual = AkbankCreditCardImporterCsv.GetCardTransactionLines(data);
 
         Assert.Equal(expected, actual);
     }
 
-    public static IEnumerable<object?[]> GetCardTransaction_ShouldReturnCorrectData_Data =>
-        new List<object?[]>()
-        {
-            new object?[] { ";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;", null },
-            new object[]
-            {
+    public static IEnumerable<
+        TheoryDataRow<string, CardTransaction?>
+    > GetCardTransaction_ShouldReturnCorrectData_Data =>
+        [
+            new(";   TURISM AND ENTERTAINMENT;0,00 TL;0 TL / 0;", null),
+            new(
                 "8.07.2025;[Redacted]             [Redacted(city)]         TR;65,00 TL;0 TL / 0;",
                 new CardTransaction()
                 {
@@ -131,10 +129,9 @@ public class AkbankCreditCardImporterCsv_Tests
 
                     Currency = null!,
                     Card = null!,
-                },
-            },
-            new object[]
-            {
+                }
+            ),
+            new(
                 "17.06.2025;Chip-Para ile Ödeme;-133,60 TL;-133,60 TL / 0;",
                 new CardTransaction()
                 {
@@ -146,9 +143,9 @@ public class AkbankCreditCardImporterCsv_Tests
 
                     Currency = null!,
                     Card = null!,
-                },
-            },
-        };
+                }
+            ),
+        ];
 
     [Theory]
     [MemberData(nameof(GetCardTransaction_ShouldReturnCorrectData_Data))]
@@ -195,7 +192,7 @@ public class AkbankCreditCardImporterCsv_Tests
         AkbankCreditCardImporterCsv importer = new();
         string[] expected = [".csv"];
 
-        var actual = importer.SupportedFileExtensions();
+        string[] actual = importer.SupportedFileExtensions();
 
         Assert.Equal(expected, actual);
     }

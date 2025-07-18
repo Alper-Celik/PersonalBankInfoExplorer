@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
+#pragma warning disable IDE0130 // it is in folder to put it in same place as seed data and config
 namespace BankDataDb.Entities;
 
 [Index(nameof(Alpha2Code), IsUnique = true)]
@@ -28,23 +29,23 @@ public class Country
     [JsonPropertyName("name")]
     public required string EnglishName { get; set; }
 
-    public static Country? GetCountry(string CodeOrName)
+    public static Country? GetCountry(string codeOrName)
     {
         Country? result = null;
 
-        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
-        var jsonPath = Path.Combine(assemblyPath, "SeedData", "countries.seed.json"); //from https://github.com/stefangabos/world_countries/blob/3480efd5b52aee45ebc22afa224cc05b70c500df/data/countries/en/countries.json
+        string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+        string jsonPath = Path.Combine(assemblyPath, "SeedData", "countries.seed.json"); //from https://github.com/stefangabos/world_countries/blob/3480efd5b52aee45ebc22afa224cc05b70c500df/data/countries/en/countries.json
         List<Country> countries =
             JsonSerializer.Deserialize<List<Country>>(File.ReadAllText(jsonPath))
             ?? throw new UnreachableException("json not found");
 
-        foreach (var country in countries)
+        foreach (Country country in countries)
         {
             int i = 0;
             bool found = false;
             do
             {
-                if (CodeOrName == country.Alpha2Code || CodeOrName == country.Alpha3Code)
+                if (codeOrName == country.Alpha2Code || codeOrName == country.Alpha3Code)
                 {
                     found = true;
                 }

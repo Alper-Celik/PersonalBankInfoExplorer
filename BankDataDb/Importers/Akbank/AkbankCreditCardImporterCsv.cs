@@ -1,7 +1,9 @@
+using System.Globalization;
 using System.Text;
 using BankDataDb.Entities;
 using Microsoft.EntityFrameworkCore.Storage;
 
+#pragma warning disable IDE0130 // it is in folder to put it in same place as seed data and config
 namespace BankDataDb.Importers;
 
 public class AkbankCreditCardImporterCsv : IBankImporter
@@ -15,23 +17,22 @@ public class AkbankCreditCardImporterCsv : IBankImporter
             filePath.FullName,
             Encoding.GetEncoding("windows-1254") // windows-turkish since akbank seems to encode it in it for some reason
         );
-        var dbTransaction = await context.Database.BeginTransactionAsync();
+        IDbContextTransaction dbTransaction = await context.Database.BeginTransactionAsync();
 
         try
         {
-            var akbank = await GetAkbankBankAsync(context);
-            var cardFromStatement = await GetAkbankCardAsync(data.First(), akbank, context);
-            var cardTransactions = GetCardTransactions( // TODO: add duplicate item prevantion in case of
+            Bank akbank = await GetAkbankBankAsync(context);
+            Card cardFromStatement = await GetAkbankCardAsync(data.First(), akbank, context);
+            List<CardTransaction> cardTransactions = GetCardTransactions( // TODO: add duplicate item prevantion in case of
                 GetCardTransactionLines(data), //               importing current months statement multiple times
-                cardFromStatement,
-                context
+                cardFromStatement
             );
 
-            await context.cardTransactions.AddRangeAsync(cardTransactions);
-            await context.SaveChangesAsync();
+            await context.CardTransactions.AddRangeAsync(cardTransactions);
+            _ = await context.SaveChangesAsync();
             return (cardTransactions, dbTransaction);
         }
-        catch (System.Exception)
+        catch (Exception)
         {
             dbTransaction.Rollback();
             dbTransaction.Dispose();
@@ -41,12 +42,12 @@ public class AkbankCreditCardImporterCsv : IBankImporter
 
     public static async Task<Bank> GetAkbankBankAsync(BankDataContext context)
     {
-        Bank? akbank = context.Banks.FirstOrDefault(b => b.Name == "Akbank");
+        Bank? akbank = context.Banks.FirstOrDefault(static b => b.Name == "Akbank");
         if (akbank is null)
         {
             akbank = new Bank() { Name = "Akbank" };
-            await context.Banks.AddAsync(akbank);
-            await context.SaveChangesAsync();
+            _ = await context.Banks.AddAsync(akbank);
+            _ = await context.SaveChangesAsync();
         }
         return akbank;
     }
@@ -67,8 +68,8 @@ public class AkbankCreditCardImporterCsv : IBankImporter
                 Name = GetCardName(cardLine),
                 IssuedBank = akbank,
             };
-            await context.AddAsync(cardFromStatement);
-            await context.SaveChangesAsync();
+            _ = await context.AddAsync(cardFromStatement);
+            _ = await context.SaveChangesAsync();
         }
 
         return cardFromStatement;
@@ -76,13 +77,12 @@ public class AkbankCreditCardImporterCsv : IBankImporter
 
     public static List<CardTransaction> GetCardTransactions(
         IEnumerable<string> cardTransactionLines,
-        Card cardFromStatement,
-        BankDataContext context
+        Card cardFromStatement
     )
     {
         List<CardTransaction> cardTransactions = [];
         string cardTransactionCategory = "";
-        foreach (var cardTransactionLine in cardTransactionLines)
+        foreach (string cardTransactionLine in cardTransactionLines)
         {
             CardTransaction? transaction = GetCardTransaction(
                 cardTransactionLine,
@@ -95,7 +95,7 @@ public class AkbankCreditCardImporterCsv : IBankImporter
                 // ";      SUPERMARKET;0,00 TL;0 TL / 0;"
                 // note: 0TL part is just empty data it doesn't mean all SUPERMARKET transactions costed 0 TL
                 cardTransactionCategory = string.Concat(
-                    cardTransactionLine.Split(";")[1].SkipWhile(c => c == ' ')
+                    cardTransactionLine.Split(";")[1].SkipWhile(static c => c == ' ')
                 );
                 continue;
             }
@@ -104,11 +104,13 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         return cardTransactions;
     }
 
-    public static IEnumerable<string> GetCardTransactionLines(IEnumerable<string> lines) =>
-        lines
-            .SkipWhile(l => !l.StartsWith("Tarih"))
+    public static IEnumerable<string> GetCardTransactionLines(IEnumerable<string> lines)
+    {
+        return lines
+            .SkipWhile(static l => !l.StartsWith("Tarih", false, CultureInfo.InvariantCulture))
             .Skip(1) // skip until and the "Tarih;Açıklama;Tutar;Chip Para / Mil;" line
-            .TakeWhile(l => l.Contains(";")); // last lines doesn't contain semicolons
+            .TakeWhile(static l => l.Contains(';')); // last lines doesn't contain semicolons
+    }
 
     // parses transaction info csv line and returns CardTransaction
     // example csv lines:
@@ -119,14 +121,14 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     // schema of the line is : Tarih|Açıklama|Tutar|Chip Para / Mil
     public static CardTransaction? GetCardTransaction(string line, Card card)
     {
-        var columns = line.Split(";");
+        string[] columns = line.Split(";");
 
         if (columns[0] == string.Empty)
         {
             return null;
         }
 
-        var dateParts = columns[0].Split(".").Select(x => int.Parse(x)).ToArray();
+        int[] dateParts = [.. columns[0].Split(".").Select(int.Parse)];
         DateOnly transactionDate = new(day: dateParts[0], month: dateParts[1], year: dateParts[2]);
 
         string comment = columns[1];
@@ -134,16 +136,21 @@ public class AkbankCreditCardImporterCsv : IBankImporter
         // if it has country code it is in the last part
         // like in "******    *****       TR"
         Country? country = Country.GetCountry(
-            string.Concat(comment.Reverse().TakeWhile(c => c != ' ').Reverse())
+            string.Concat(comment.Reverse().TakeWhile(static c => c != ' ').Reverse())
         );
 
         long amountInMinorUnit = long.Parse(
-            string.Concat(columns[2].TakeWhile(c => c != ' ').Where(c => c != '.' && c != ','))
+            string.Concat(
+                columns[2]
+                    .TakeWhile(static c => c != ' ')
+                    .Where(static c => c is not '.' and not ',')
+            ),
+            CultureInfo.InvariantCulture
         );
 
         Currency currency =
             Currency.GetCurrency(
-                string.Concat(columns[2].Reverse().TakeWhile(c => c != ' ').Reverse())
+                string.Concat(columns[2].Reverse().TakeWhile(static c => c != ' ').Reverse())
             )
             ?? new Currency
             {
@@ -171,17 +178,17 @@ public class AkbankCreditCardImporterCsv : IBankImporter
     // example data "Kart Türü / No:;Some Axes Card / **** **** **** 1234;"
     public static string GetCardName(string data)
     {
-        var cardNameAndNo = data.Split(";")[1].Split("/");
-        var CardName = cardNameAndNo[0];
-        CardName = string.Concat(CardName.Take(CardName.Length - 1));
-        return CardName;
+        string[] cardNameAndNo = data.Split(";")[1].Split("/");
+        string cardName = cardNameAndNo[0];
+        cardName = string.Concat(cardName.Take(cardName.Length - 1));
+        return cardName;
     }
 
     public static short GetCardLast4Digits(string data)
     {
-        var cardNameAndNo = data.Split(";")[1].Split("/");
-        var Last4Digits = string.Concat(cardNameAndNo[1].Skip(16).Take(4));
-        return short.Parse(Last4Digits);
+        string[] cardNameAndNo = data.Split(";")[1].Split("/");
+        string last4Digits = string.Concat(cardNameAndNo[1].Skip(16).Take(4));
+        return short.Parse(last4Digits, CultureInfo.InvariantCulture);
     }
 
     public string[] SupportedFileExtensions()

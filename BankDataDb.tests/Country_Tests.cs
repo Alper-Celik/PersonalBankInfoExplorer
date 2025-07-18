@@ -1,16 +1,16 @@
 using BankDataDb.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankDataDb.tests;
+namespace BankDataDb.Tests;:
 
 public class Country_Tests
 {
     [Theory]
     [InlineData("TR", "TUR")]
     [InlineData("us", "USA")]
-    void GetCountry_SjouldReturnCorrectDataFromAlpha2Code(string alpha2, string alpha3)
+    public void GetCountry_SjouldReturnCorrectDataFromAlpha2Code(string alpha2, string alpha3)
     {
-        var actual = Country.GetCountry(alpha2)?.Alpha3Code;
+        string? actual = Country.GetCountry(alpha2)?.Alpha3Code;
 
         Assert.Equal(alpha3, actual);
     }
@@ -18,9 +18,9 @@ public class Country_Tests
     [Theory]
     [InlineData("tur", "TR")]
     [InlineData("USA", "US")]
-    void GetCountry_SjouldReturnCorrectDataFromAlpha3Code(string alpha3, string alpha2)
+    public void GetCountry_SjouldReturnCorrectDataFromAlpha3Code(string alpha3, string alpha2)
     {
-        var actual = Country.GetCountry(alpha3)?.Alpha2Code;
+        string? actual = Country.GetCountry(alpha3)?.Alpha2Code;
 
         Assert.Equal(alpha2, actual);
     }
@@ -32,13 +32,13 @@ public class Country_Tests
     [InlineData("US", "USA", "United States of America")]
     public async Task CountryConfigration_CountrySeeding(string alpha2, string alpha3, string name)
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
 
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
         Country country = await context
             .Countries.Where(c => c.Alpha3Code == alpha3)
-            .SingleAsync(TestContext.Current.CancellationToken);
+            .SingleAsync(cancellationToken: TestContext.Current.CancellationToken);
         Assert.Equal(alpha2, country.Alpha2Code);
         Assert.Equal(alpha3, country.Alpha3Code);
         Assert.Equal(name, country.EnglishName);

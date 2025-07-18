@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace BankDataDb.Importers;
 
-interface IBankImporter
+public interface IBankImporter
 {
     string[] SupportedFileExtensions();
 

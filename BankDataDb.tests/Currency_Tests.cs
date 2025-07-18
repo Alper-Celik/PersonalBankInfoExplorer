@@ -1,7 +1,7 @@
 using BankDataDb.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankDataDb.tests;
+namespace BankDataDb.Tests;
 
 public class Currency_Tests
 {
@@ -13,10 +13,10 @@ public class Currency_Tests
     public async Task CurrencyConfigration_CurrencySeeding(
         string code,
         string name,
-        byte MinorUnitFractions
+        byte minorUnitFractions
     )
     {
-        var context = new BankDataContext();
+        using BankDataContext context = new();
 
         await context.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
@@ -25,6 +25,6 @@ public class Currency_Tests
             .SingleAsync(TestContext.Current.CancellationToken);
         Assert.Equal(code, currency.CurrencyCode);
         Assert.Equal(name, currency.Name);
-        Assert.Equal(MinorUnitFractions, currency.MinorUnitFractions);
+        Assert.Equal(minorUnitFractions, currency.MinorUnitFractions);
     }
 }

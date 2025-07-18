@@ -6,60 +6,61 @@ namespace BankDataDb.Entities;
 
 public class BankDataContext : DbContext
 {
-    private readonly string? connectionString;
-    private readonly SqliteConnection? connection;
-    private readonly bool? closeConnection;
+    private readonly string? _connectionString;
+    private readonly SqliteConnection? _connection;
+    private readonly bool? _closeConnection;
 
     public BankDataContext(DbContextOptions<BankDataContext> options)
         : base(options) { }
 
-    public BankDataContext(SqliteConnection _connection, bool _closeConnection = false)
+    public BankDataContext(SqliteConnection connection, bool closeConnection = false)
     {
-        this.connection = _connection;
-        this.closeConnection = _closeConnection;
+        _connection = connection;
+        _closeConnection = closeConnection;
     }
 
-    public BankDataContext(string _connectionString)
+    public BankDataContext(string connectionString)
     {
-        this.connectionString = _connectionString;
+        _connectionString = connectionString;
     }
 
     public BankDataContext()
         : this(new SqliteConnection("Data Source=:memory:"), true)
     {
-        connection!.Open();
+        _connection!.Open();
     }
 
     public override void Dispose()
     {
+        GC.SuppressFinalize(this);
         base.Dispose();
-        if (closeConnection is not null && connection is not null && closeConnection.Value)
+        if (_closeConnection is not null && _connection is not null && _closeConnection.Value)
         {
-            connection.Dispose();
+            _connection.Dispose();
         }
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (connectionString is not null)
+        if (_connectionString is not null)
         {
-            optionsBuilder.UseSqlite(connectionString);
+            _ = optionsBuilder.UseSqlite(_connectionString);
         }
-        else if (connection is not null)
+        else if (_connection is not null)
         {
-            optionsBuilder.UseSqlite(connection);
+            _ = optionsBuilder.UseSqlite(_connection);
         }
-        optionsBuilder.LogTo(Console.WriteLine);
+        _ = optionsBuilder.LogTo(Console.WriteLine);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        _ = modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public DbSet<Country> Countries { get; set; } = null!;
     public DbSet<Currency> Currencies { get; set; } = null!;
     public DbSet<Bank> Banks { get; set; } = null!;
     public DbSet<Card> Cards { get; set; } = null!;
-    public DbSet<CardTransaction> cardTransactions { get; set; } = null!;
+    public DbSet<CardTransaction> CardTransactions { get; set; } = null!;
 }
