@@ -19,5 +19,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>SeedData/%(Filename)%(Extension)</TargetPath>
     </None>
+    <PackageReference Include="NPOI" Version="2.7.4" />
   </ItemGroup>
 </Project>
